@@ -4,18 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Login from './components/Login'
-import Signup from './components/Signup'
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
-    <React.StrictMode>
-      <Router>
-        <Route exact path="/" component={App} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-      </Router>
-    </React.StrictMode>,
+    
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
 
   document.getElementById('root')
 );
