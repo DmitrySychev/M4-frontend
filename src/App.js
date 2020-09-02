@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import Login from './components/Login'
 import Signup from './components/Signup'
-import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
+import Home from './components/Home'
+import { Route, NavLink, Switch, withRouter } from 'react-router-dom';
 
 
 class App extends React.Component{
@@ -11,28 +12,52 @@ class App extends React.Component{
     user: null
   }
 
+
+
   signupHandler = (userObj) => {
     fetch("http://localhost:3000/api/v1/users", {
-      method: 'POST',
-      mode: 'no-cors',
+      method: "POST",
       headers: {
-        accept: 'application/json',
-        "content-type": 'application/json'
+        "Content-Type": "application/json",
+        Accept: "application/json"
       },
-      body: JSON.stringify({ user: userObj})
+      body: JSON.stringify({ user: userObj })
     })
       .then(res => res.json())
       .then(console.log)
   }
+
+  loginHandler = (userInfo) => {
+    fetch("http://localhost:3000/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ userInfo })
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ user: data.user })
+      }, () => this.props.history.push("/home"))
+   
+  }
+
+  // componentDidMount() {
+  //   const (token)
+  // }
+
+  
 
   render() {
     return (
 
     <>
       <Switch>
-        <Route exact path="/" component={App} />
-        <Route exact path="/login" component={Login} />
         <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>} />
+        <Route path="/home" render={() => <Home />} /> 
+        <Route path="/login" render={() => <Login submitHandler={this.loginHandler} />}/>
+
       </Switch>
           <div> 
             <h1>home</h1>
