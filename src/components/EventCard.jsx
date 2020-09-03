@@ -1,7 +1,8 @@
 import React from 'react'
 import { Popup, Card, Image, Rating } from 'semantic-ui-react'
 
-const EventCard = () => (
+const EventCard = (props) => (
+  
   <Popup
     trigger={
       <Card vertical >

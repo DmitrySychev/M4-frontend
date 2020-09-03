@@ -37,7 +37,7 @@ class App extends React.Component{
 
   loginHandler = (userInfo) => {
     console.log("user obj from login form", userInfo)
-    fetch("http://localhost:3000/api/v1/login", {
+    fetch("http://localhost:3001/api/v1/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,14 +50,21 @@ class App extends React.Component{
         // console.log("token:", data.jwt)
         console.log("data.user", data.user)
         localStorage.setItem("token", data.jwt)
-        this.setState({ user: data.user }, () => this.props.history.push("/home") )
+        this.setState({ user: data.user }, () => this.props.history.push("/") )
       })
   }
 
+  getEvents = () => {
+    fetch('http://localhost:3001/events')
+      .then(res => res.json())
+      .then(console.log)
+  }
+
   componentDidMount() {
+    this.getEvents()
     const token = localStorage.getItem("token")
     if (token) {
-      fetch("http://localhost:3000/api/v1/profile", {
+      fetch("http://localhost:3001/api/v1/profile", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}`},
       })
@@ -82,7 +89,7 @@ class App extends React.Component{
           </Route>
           <Route path="/signup">
             <Home />
-            <SignupForm submitHandler={this.signupHandler}/>}/>
+            <SignupForm submitHandler={this.signupHandler}/>
           </Route>
           <Route path="/">
             <Home />
