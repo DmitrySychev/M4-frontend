@@ -1,5 +1,7 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import Navbar from './Navbar.jsx'
+import Footer from './Footer.jsx'
+import { Button, Form, Grid, Header, Image } from 'semantic-ui-react'
 
 class SignupForm extends React.Component {
 
@@ -20,6 +22,8 @@ class SignupForm extends React.Component {
 
     render() {
         return (
+            <>
+            <Navbar/>
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
               <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as='h2' color='teal' textAlign='center'>
@@ -55,12 +59,12 @@ class SignupForm extends React.Component {
                     Signup
                   </Button>
               </Form>
-              
-                <Message>
-                  New to us? <a href='#'>Sign Up</a>
-                </Message>
+
+
               </Grid.Column>
             </Grid>
+            <Footer />
+            </>
           )
 
         

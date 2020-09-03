@@ -3,12 +3,11 @@ import './App.css';
 import Home from './components/Home.jsx'
 import LoginForm from './components/Login.jsx'
 import SignupForm from './components/Signup.jsx'
+import CreateEvent from './components/CreateEvent.jsx'
 import {  
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  NavLink,
   withRouter } from 'react-router-dom';
 
 
@@ -54,6 +53,10 @@ class App extends React.Component{
       })
   }
 
+  eventHandler = (eventInfo) => {
+    console.log(eventInfo)
+  }
+
   getEvents = () => {
     fetch('http://localhost:3001/events')
       .then(res => res.json())
@@ -84,12 +87,13 @@ class App extends React.Component{
    
         <Switch>
           <Route path="/login">
-            <Home />
             <LoginForm submitHandler={this.loginHandler}/>
           </Route>
           <Route path="/signup">
-            <Home />
             <SignupForm submitHandler={this.signupHandler}/>
+          </Route>
+          <Route path="/createevent">
+            <CreateEvent submitHandler={this.eventHandler}/>
           </Route>
           <Route path="/">
             <Home />
