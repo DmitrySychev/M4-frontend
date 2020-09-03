@@ -1,4 +1,7 @@
 import React from 'react'
+import Navbar from './Navbar.jsx'
+import Footer from './Footer.jsx'
+import { Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 class LoginForm extends React.Component {
@@ -21,6 +24,8 @@ class LoginForm extends React.Component {
 
 render() {
     return (
+        <>
+    <Navbar />    
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='teal' textAlign='center'>
@@ -52,12 +57,16 @@ render() {
                     Login
                   </Button>
               </Form>
-      <Message>
-        New to us? <a href='#'>Sign Up</a>
-      </Message>
+
+              <Segment >
+                <Message as={Link} to='/signup'>
+                    New to us? Sign up!
+                </Message>
+              </Segment>
     </Grid.Column>
   </Grid>
-
+  <Footer />
+</>
     )
 }}
 

@@ -1,18 +1,12 @@
 import React from 'react'
+import Navbar from './Navbar.jsx'
+import Footer from './Footer.jsx'
 import {
   Container,
-  Divider,
-  Dropdown,
-  Grid,
-  Header,
-  Image,
-  List,
-  Menu,
   Segment,
 } from 'semantic-ui-react';
-import CalendarLG from './CalendarLG.jsx';
 import EventCard from './EventCard.jsx';
-import { Route, Link, Switch, withRouter } from 'react-router-dom';
+
 
 class Home extends React.Component{
 
