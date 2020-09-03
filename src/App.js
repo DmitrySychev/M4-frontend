@@ -1,9 +1,13 @@
 import React from 'react';
 import './App.css';
-import Login from './components/Login'
-import Signup from './components/Signup'
 import Home from './components/Home'
+import SidebarN from './components/SidebarN'
+import SignupMondal from './components/SignupMondal.jsx'
+import LoginMondal from './components/LoginMondal.jsx'
 import { Route, NavLink, Switch, withRouter } from 'react-router-dom';
+
+
+
 
 
 class App extends React.Component{
@@ -51,27 +55,23 @@ class App extends React.Component{
 
   render() {
     return (
+      <div>
 
-    <>
+      <SidebarN />
       <Switch>
-        <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>} />
-        <Route path="/home" render={() => <Home />} /> 
-        <Route path="/login" render={() => <Login submitHandler={this.loginHandler} />}/>
-
+        {/* <Route path="/" render={() => <Home />} /> */}
+        <div>
+      
+        <Route path="/login" render={() => <LoginMondal submitHandler={this.loginHandler} />}/>
+        <Route path="/signup" render={() => <SignupMondal submitHandler={this.signupHandler}/>}/>
+        
+        </div>
+        
       </Switch>
-          <div> 
-            <h1>home</h1>
+  
 
-            <NavLink to="/login">
-              <button className="login" value="login" >login</button>
-            </NavLink>
+        </div>
 
-            <NavLink to="/signup">
-              <button className="signup" value="signup" >signup</button>
-            </NavLink>
-            
-          </div>
-    </>
 
       )
   };

@@ -1,9 +1,10 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
+import { Button, Header, Icon, Modal, Form, Grid, Image, Segment } from 'semantic-ui-react'
 
-class Signup extends React.Component {
+class SignupMondal extends React.Component {
 
     state = {
+        open: false,
         username: '',
         password: ''
     }
@@ -17,17 +18,25 @@ class Signup extends React.Component {
         this.props.submitHandler(this.state)
     }
 
-    render () {
-        return (
-        
-            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+render() {
+  return (
+    <Modal
+      basic
+      onClose={() => this.setState({open: false})}
+      onOpen={() => this.setState({open: true})}
+
+      size='small'
+      trigger={<Button>Signup</Button>}
+    >
+
+      <Modal.Content>
+      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
               <Header as='h2' color='grey' textAlign='center'>
                 <Image src='' /> Signup for a new account
               </Header>
               <Form size='large' onSubmit={this.submitHandler}>
-                <Segment stacked>
-                  <Form.Input 
+              <Form.Input 
                     fluid 
                     icon='user' 
                     iconPosition='left' 
@@ -52,18 +61,24 @@ class Signup extends React.Component {
                     value={this.state.password}
                     onChange={this.changeHandler}
                   />
-        
                   <Button color='grey' fluid size='large' type='submit'>
                     Signup
                   </Button>
-
-                </Segment>
               </Form>
             </Grid.Column>
           </Grid>
-        
-        )
-    }
-}
+      </Modal.Content>
+      <Modal.Actions>
+        <Button basic color='red' inverted onClick={() => this.setState({open: false})}>
+          <Icon name='remove' /> No
+        </Button>
+        <Button color='green' inverted onClick={() => this.setState({open: false})}>
+          <Icon name='checkmark' /> Yes
+        </Button>
+      </Modal.Actions>
+    </Modal>
 
-export default Signup
+  )
+}}
+
+export default SignupMondal
