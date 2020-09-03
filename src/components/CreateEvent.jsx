@@ -48,6 +48,7 @@ class CreateEvent extends React.Component {
         date: '',
         category: '',
         thumbnail: '',
+        user_id: 27
     }
 
     changeHandler = (e, {name}) => {
@@ -107,11 +108,10 @@ class CreateEvent extends React.Component {
                         <Dropdown 
                             placeholder='Category' 
                             fluid 
-                            search 
                             selection 
                             options={category}
                             name='category'
-                            value={this.state.category}
+                            value={this.state.category.value}
                             onChange={this.changeHandlerDropdown} 
                         />
                     </Segment>
@@ -120,7 +120,6 @@ class CreateEvent extends React.Component {
                     <Dropdown 
                         placeholder='Thumbnails' 
                         fluid 
-                        search 
                         selection 
                         options={thumbs} 
                         name='thumbnail'

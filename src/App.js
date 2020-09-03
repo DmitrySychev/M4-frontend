@@ -54,8 +54,18 @@ class App extends React.Component{
       })
   }
 
-  eventHandler = (eventInfo) => {
-    console.log(eventInfo)
+  eventHandler = (event) => {
+      fetch("http://localhost:3001/events/", { 
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({ event })
+      })
+      .then(res => res.json())
+      .then(data => {this.setState({...this.state.events, data }, () => this.getEvents())})
+     
   }
 
   getEvents = () => {
