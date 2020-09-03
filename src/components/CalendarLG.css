@@ -1,0 +1,4 @@
+div.ui.grid>.grey.column, div.ui.grid>.grey.row, div.ui.grid>.row>.grey.column {
+    background-color: #767676!important;
+    /* color: #fff; */
+}

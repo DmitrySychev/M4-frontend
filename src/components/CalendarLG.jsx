@@ -1,9 +1,10 @@
 import React from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import './CalendarLG.css';
 import moment from "moment";
+import '../stylesheets/react-big-calendar.css';
+import '../stylesheets/styles.css';
 
 
 const localizer = momentLocalizer(moment);
@@ -38,7 +39,9 @@ class CalendarLG extends React.Component {
     return (
 
    
-        <div className="Calendar" style={{background: "white", display: 'flex', justifyContent: 'center'}} >
+        <div className="Calendar" 
+        style={{background: "white", display: 'flex', justifyContent: 'center', textcolor: 'black'}} 
+        >
           <DnDCalendar
             defaultDate={moment().toDate()}
             defaultView="month"
@@ -55,4 +58,4 @@ class CalendarLG extends React.Component {
   }
 }
 
-export default CalendarLG;
+export default CalendarLG; 

@@ -63,14 +63,7 @@ render() {
             </Grid.Column>
           </Grid>
       </Modal.Content>
-      <Modal.Actions>
-        <Button basic color='red' inverted onClick={() => this.setState({open: false})}>
-          <Icon name='remove' /> No
-        </Button>
-        <Button color='green' inverted onClick={() => this.setState({open: false})}>
-          <Icon name='checkmark' /> Yes
-        </Button>
-      </Modal.Actions>
+
     </Modal>
 
   )
