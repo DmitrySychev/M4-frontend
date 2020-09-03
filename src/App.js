@@ -17,13 +17,14 @@ import {
 class App extends React.Component{
 
   state = {
+    events: [],
     user: null
   }
 
 
 
   signupHandler = (userObj) => {
-    fetch("http://localhost:3001/api/v1/users", {
+    fetch("http://localhost:3000/api/v1/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +38,7 @@ class App extends React.Component{
 
   loginHandler = (userInfo) => {
     console.log("user obj from login form", userInfo)
-    fetch("http://localhost:3001/api/v1/login", {
+    fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,16 +56,16 @@ class App extends React.Component{
   }
 
   getEvents = () => {
-    fetch('http://localhost:3001/events')
+    fetch('http://localhost:3000/events')
       .then(res => res.json())
-      .then(console.log)
+      .then(data => this.setState({ events: data.events}))
   }
 
   componentDidMount() {
     this.getEvents()
     const token = localStorage.getItem("token")
     if (token) {
-      fetch("http://localhost:3001/api/v1/profile", {
+      fetch("http://localhost:3000/api/v1/profile", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}`},
       })
@@ -84,15 +85,15 @@ class App extends React.Component{
    
         <Switch>
           <Route path="/login">
-            <Home />
+            <Home events={this.state.events} />
             <LoginForm submitHandler={this.loginHandler}/>
           </Route>
           <Route path="/signup">
-            <Home />
+            <Home events={this.state.events}/>
             <SignupForm submitHandler={this.signupHandler}/>
           </Route>
           <Route path="/">
-            <Home />
+            <Home events={this.state.events}/>
           </Route>
         </Switch>
     
