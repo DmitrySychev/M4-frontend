@@ -17,7 +17,8 @@ class App extends React.Component{
 
   state = {
     events: [],
-    user: null
+    user: null,
+    redirected: false
   }
 
 
@@ -64,14 +65,16 @@ class App extends React.Component{
         body: JSON.stringify({ event })
       })
       .then(res => res.json())
-      .then(data => {this.setState({...this.state.events, data }, () => this.getEvents())})
-     
+      .then(data => {this.setState({...this.state.events, data, redirected: true }, () => this.getEvents())})
+      this.props.history.push('/home');
+      
   }
 
   getEvents = () => {
     fetch('http://localhost:3000/events')
       .then(res => res.json())
       .then(data => this.setState({ events: data.events}))
+      .then(console.log(this.state))
   }
 
   componentDidMount() {
@@ -83,21 +86,25 @@ class App extends React.Component{
         headers: { Authorization: `Bearer ${token}`},
       })
       .then(resp => resp.json())
-      .then(data => this.setState({ user: data.user }))
+      .then(data => this.setState({ user: data.user, redirected: false }))
     }  else {
-      this.props.history.push("/login")     
+      this.props.history.push("/login")
     }
   }
 
   
   deleteEvent=(eventObj)=>{
-    fetch("http://localhost:3000/events"+ eventObj.id, {method: "DELETE"})
+    fetch("http://localhost:3000/events/"+ eventObj.id, {method: "DELETE"})
     const newEventsArray = this.state.events.filter(event => event.id !== eventObj.id)
     this.setState({ events: newEventsArray}, console.log("new events array", this.state.events))
     console.log("event obj in app", eventObj)
   }
 
   render() {
+    const { redirected } = this.state
+    if (redirected) {
+      window.location.reload()
+    }
     return (
       <Router>
 
@@ -111,7 +118,7 @@ class App extends React.Component{
           <Route path="/createevent">
             <CreateEvent submitHandler={this.eventHandler}/>
           </Route>
-          <Route path="/">
+          <Route path="/" >
             <Home events={this.state.events} deleteEvent={this.deleteEvent}/>
           </Route>
         </Switch>
