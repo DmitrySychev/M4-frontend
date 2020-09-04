@@ -4,6 +4,7 @@ import Home from './components/Home.jsx'
 import LoginForm from './components/Login.jsx'
 import SignupForm from './components/Signup.jsx'
 import CreateEvent from './components/CreateEvent.jsx'
+import EventsHomeContainer from './containers/EventsHomeContainer.jsx'
 import {  
   Switch,
   Route,
@@ -70,7 +71,7 @@ class App extends React.Component{
     fetch('http://localhost:3000/events')
       .then(res => res.json())
       .then(data => this.setState({ events: data.events, redirected: false}))
-      .then(console.log(this.state))
+      // .then(console.log(this.state))
   }
 
   componentDidMount() {
@@ -83,7 +84,6 @@ class App extends React.Component{
       })
       .then(resp => resp.json())
       .then(data => this.setState({ user: data.user }))
-      .then(console.log(this.state))
     }  else {
       this.props.history.push("/login")
     }
@@ -102,7 +102,6 @@ class App extends React.Component{
         body: JSON.stringify({ event_id: eventId, user_id: userId })
       })
       .then(res => res.json())
-      .then(console.log)
 
   }
   
@@ -119,12 +118,17 @@ class App extends React.Component{
       return <Route path="/" render={() => <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
     }
     return (
-
+  
+    
         <Switch>
           <Route path="/login" render={() => <LoginForm submitHandler={this.loginHandler}/>} />
           <Route path="/signup" render={() => <SignupForm submitHandler={this.signupHandler}/>} />
-          <Route path="/createevent" render={() => <CreateEvent submitHandler={this.eventHandler}/>}/>
-          <Route path="/" render={() => <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
+
+  
+          <Route path="/createevent" render={() => <CreateEvent user={this.state.user} submitHandler={this.eventHandler}/>}/>
+
+          <Route path="/events" render={() => <EventsHomeContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
+          <Route path="/" render={() => <Home events={this.state.events} />}/>
         </Switch>
 
       )
