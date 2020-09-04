@@ -62,7 +62,7 @@ class App extends React.Component{
       })
       .then(res => res.json())
       .then(data => {this.setState({...this.state.events, data, redirected: true }, () => this.getEvents())})
-      this.props.history.push('/home');
+      this.props.history.push('/');
       
   }
 
@@ -115,7 +115,9 @@ class App extends React.Component{
   render() {
     const { redirected } = this.state
     if (redirected) {
-      window.location.reload()
+      return <Route path="/">
+                <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>
+              </Route>
     }
     return (
       <Router>
