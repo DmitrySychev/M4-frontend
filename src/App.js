@@ -10,9 +10,6 @@ import {
   Route,
   withRouter } from 'react-router-dom';
 
-
-
-
 class App extends React.Component{
 
   state = {
@@ -20,7 +17,6 @@ class App extends React.Component{
     user: null,
     redirected: false
   }
-
 
 
   signupHandler = (userObj) => {
@@ -92,12 +88,34 @@ class App extends React.Component{
     }
   }
 
+
+  newUserEvent=(eventId, userId)=>{
+    console.log("in app", eventId, userId)
+
+    fetch("http://localhost:3000/user_events/", { 
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({ event_id: eventId, user_id: userId })
+      })
+      .then(res => res.json())
+      .then(console.log)
+
+  }
   
   deleteEvent=(eventObj)=>{
+<<<<<<< HEAD
     fetch("http://localhost:3000/events/"+ eventObj.id, {method: "DELETE"})
+=======
+>>>>>>> 7d781fbbac070efb5f0891d87def491c1c47a72b
     const newEventsArray = this.state.events.filter(event => event.id !== eventObj.id)
-    this.setState({ events: newEventsArray}, console.log("new events array", this.state.events))
-    console.log("event obj in app", eventObj)
+    console.log("event obj ID in app", eventObj.id)
+
+    fetch("http://localhost:3000/events/"+eventObj.id, {method: "DELETE"}) // not working
+
+    .then(this.setState({ events: newEventsArray}, console.log("new events array", this.state.events))) //working
   }
 
   render() {
@@ -118,8 +136,13 @@ class App extends React.Component{
           <Route path="/createevent">
             <CreateEvent submitHandler={this.eventHandler}/>
           </Route>
+<<<<<<< HEAD
           <Route path="/" >
             <Home events={this.state.events} deleteEvent={this.deleteEvent}/>
+=======
+          <Route path="/">
+            <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>
+>>>>>>> 7d781fbbac070efb5f0891d87def491c1c47a72b
           </Route>
         </Switch>
 
