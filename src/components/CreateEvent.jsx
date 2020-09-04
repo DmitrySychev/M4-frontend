@@ -1,7 +1,8 @@
-import React from 'react'
-import Navbar from './Navbar.jsx'
-import Footer from './Footer.jsx'
-import { Button, Form, Grid, Header, Image, Dropdown, Segment } from 'semantic-ui-react'
+import React from 'react';
+import Navbar from './Navbar.jsx';
+import Footer from './Footer.jsx';
+import { Redirect } from 'react-router-dom';
+import { Button, Form, Grid, Header, Image, Dropdown, Segment } from 'semantic-ui-react';
 
 const category = [
     { key: 'zoomparty', text: 'Zoom Party', value: 'zoomparty' },
@@ -65,7 +66,10 @@ class CreateEvent extends React.Component {
     }
 
     render() {
+      console.log(this.props.user)
         return (
+          <>
+            { this.props.user ? 
             <>
             <Navbar/>
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -137,6 +141,12 @@ class CreateEvent extends React.Component {
             </Grid>
             <Footer />
             </>
+            :
+            <>
+            <Redirect to='/signup' />
+            </>
+            }
+          </>
           )
 
         

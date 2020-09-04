@@ -22,14 +22,13 @@ class HomeEventCard extends React.Component{
             <Card.Description>
               {this.props.event.description}
             </Card.Description>
-            {/* If event.user_id === token id, then render the delete button */}
           </Card.Content>
         </Card>
       }
     >
       <Popup.Header>User Rating</Popup.Header>
       <Popup.Content>
-        <Rating icon='star' defaultRating={3} maxRating={4} />
+        <Rating icon='star' defaultRating={3} maxRating={5} />
       </Popup.Content>
     </Popup>
       </> 

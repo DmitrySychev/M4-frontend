@@ -18,6 +18,7 @@ class EventsHomeContainer extends React.Component {
             <RecommendationContainer />
             <Footer />
             </>
+            
             :
 
             <Redirect to='/signup' />

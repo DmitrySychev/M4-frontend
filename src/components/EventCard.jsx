@@ -32,7 +32,7 @@ class EventCard extends React.Component{
     >
       <Popup.Header>User Rating</Popup.Header>
       <Popup.Content>
-        <Rating icon='star' defaultRating={3} maxRating={4} />
+        <Rating icon='star' defaultRating={3} maxRating={5} />
       </Popup.Content>
     </Popup>
       </> 

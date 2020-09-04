@@ -15,6 +15,7 @@ class EventsContainer extends React.Component {
 
 
     render() {
+        
         return (
       
             <Container inverted style={{ marginTop: '7em' }}>
