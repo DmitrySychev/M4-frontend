@@ -18,7 +18,7 @@ const Navbar = (props) => (
       <Dropdown.Item as={Link} to='/events'>List Events</Dropdown.Item>
       <Dropdown.Divider />
       <Dropdown.Header>Header Item</Dropdown.Header>
-      <Dropdown.Item>List Item</Dropdown.Item>
+      <Dropdown.Item>Events Home</Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>
   {console.log(props.user)}
@@ -27,11 +27,13 @@ const Navbar = (props) => (
 
   { 
   
-    props.user === null ?
+    props.user === undefined ?
 
     <Menu.Item as={Link} to='/login' >Login</Menu.Item>
+
     :
-    <Menu.Item as={Link} to='/' >Logout</Menu.Item>
+
+    <Menu.Item as={Link} to='/'>Logout</Menu.Item>
     
   }
 

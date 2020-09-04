@@ -52,6 +52,13 @@ class App extends React.Component{
       })
   }
 
+  logoutHandler=()=>{
+    localStorage.removeItem('token')
+    this.props.history.push('/login')
+    this.setState({ user: null })
+    console.log('success')
+  }
+
   eventHandler = (event) => {
       fetch("http://localhost:3000/events/", { 
         method: 'POST',
@@ -128,7 +135,7 @@ class App extends React.Component{
           <Route path="/createevent" render={() => <CreateEvent user={this.state.user} submitHandler={this.eventHandler}/>}/>
 
           <Route path="/events" render={() => <EventsHomeContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
-          <Route path="/" render={() => <Home events={this.state.events} />}/>
+          <Route path="/" render={() => <Home events={this.state.events} logoutHandler={this.logoutHandler} />}/>
         </Switch>
 
       )

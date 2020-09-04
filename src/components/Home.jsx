@@ -21,6 +21,8 @@ state = {
     })
   }
 
+
+
   render(){
     return (
         <>
@@ -29,7 +31,7 @@ state = {
       <Container text style={{ marginTop: '7em' }}>
       <Container> 
       <Segment>
-        <button onClick={localStorage.removeItem('token')}>Logout</button>
+        <button onClick={this.props.logoutHandler}>Logout</button>
       </Segment>
     </Container>
       </Container>
