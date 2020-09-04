@@ -15,9 +15,14 @@ class Home extends React.Component{
     this.props.deleteEvent(eventObj)
   }
 
+  joinEvent=(eventObj, userObj)=>{
+    this.props.joinEvent(eventObj.id, userObj.userId)
+  }
+
+
   renderEvents=()=>{
     return this.props.events.map(event=> {
-      return <EventCard key={event.id} event={event} deleteEvent={this.deleteEvent}/>
+      return <EventCard key={event.id} event={event} joinEvent={this.joinEvent} deleteEvent={this.deleteEvent}/>
     })
   }
 

@@ -17,7 +17,8 @@ class EventCard extends React.Component{
               {this.props.event.description}
             </Card.Description>
             {/* If event.user_id === token id, then render the delete button */}
-            <button onClick={()=> this.props.deleteEvent(this.props.event)}>Delete Event</button>
+            <button onClick={()=> this.props.deleteEvent(this.props.event)}>Delete Event</button><br/><br/>
+            <button onClick={()=> this.props.joinEvent(this.props.event, {userId: 41})}>Join Event</button>
           </Card.Content>
         </Card>
       }
