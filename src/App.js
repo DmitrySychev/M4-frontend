@@ -5,10 +5,10 @@ import LoginForm from './components/Login.jsx'
 import SignupForm from './components/Signup.jsx'
 import CreateEvent from './components/CreateEvent.jsx'
 import {  
-  BrowserRouter as Router,
   Switch,
   Route,
   withRouter } from 'react-router-dom';
+
 
 class App extends React.Component{
 
@@ -69,7 +69,7 @@ class App extends React.Component{
   getEvents = () => {
     fetch('http://localhost:3000/events')
       .then(res => res.json())
-      .then(data => this.setState({ events: data.events}))
+      .then(data => this.setState({ events: data.events, redirected: false}))
       .then(console.log(this.state))
   }
 
@@ -82,7 +82,8 @@ class App extends React.Component{
         headers: { Authorization: `Bearer ${token}`},
       })
       .then(resp => resp.json())
-      .then(data => this.setState({ user: data.user, redirected: false }))
+      .then(data => this.setState({ user: data.user }))
+      .then(console.log(this.state))
     }  else {
       this.props.history.push("/login")
     }
@@ -115,29 +116,17 @@ class App extends React.Component{
   render() {
     const { redirected } = this.state
     if (redirected) {
-      return <Route path="/">
-                <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>
-              </Route>
+      return <Route path="/" render={() => <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
     }
     return (
-      <Router>
 
         <Switch>
-          <Route path="/login">
-            <LoginForm submitHandler={this.loginHandler}/>
-          </Route>
-          <Route path="/signup">
-            <SignupForm submitHandler={this.signupHandler}/>
-          </Route>
-          <Route path="/createevent">
-            <CreateEvent submitHandler={this.eventHandler}/>
-          </Route>
-          <Route path="/">
-            <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>
-          </Route>
+          <Route path="/login" render={() => <LoginForm submitHandler={this.loginHandler}/>} />
+          <Route path="/signup" render={() => <SignupForm submitHandler={this.signupHandler}/>} />
+          <Route path="/createevent" render={() => <CreateEvent submitHandler={this.eventHandler}/>}/>
+          <Route path="/" render={() => <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
         </Switch>
 
-      </Router>
       )
   };
 }
