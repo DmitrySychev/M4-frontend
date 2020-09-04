@@ -106,16 +106,10 @@ class App extends React.Component{
   }
   
   deleteEvent=(eventObj)=>{
-<<<<<<< HEAD
-    fetch("http://localhost:3000/events/"+ eventObj.id, {method: "DELETE"})
-=======
->>>>>>> 7d781fbbac070efb5f0891d87def491c1c47a72b
     const newEventsArray = this.state.events.filter(event => event.id !== eventObj.id)
     console.log("event obj ID in app", eventObj.id)
-
-    fetch("http://localhost:3000/events/"+eventObj.id, {method: "DELETE"}) // not working
-
-    .then(this.setState({ events: newEventsArray}, console.log("new events array", this.state.events))) //working
+    fetch("http://localhost:3000/events/"+eventObj.id, {method: "DELETE"})
+      .then(this.setState({ events: newEventsArray}, console.log("new events array", this.state.events))) //working
   }
 
   render() {
@@ -136,13 +130,8 @@ class App extends React.Component{
           <Route path="/createevent">
             <CreateEvent submitHandler={this.eventHandler}/>
           </Route>
-<<<<<<< HEAD
-          <Route path="/" >
-            <Home events={this.state.events} deleteEvent={this.deleteEvent}/>
-=======
           <Route path="/">
             <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>
->>>>>>> 7d781fbbac070efb5f0891d87def491c1c47a72b
           </Route>
         </Switch>
 
