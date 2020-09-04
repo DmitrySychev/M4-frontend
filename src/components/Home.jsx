@@ -10,9 +10,14 @@ import EventCard from './EventCard.jsx';
 
 class Home extends React.Component{
 
+
+  deleteEvent=(eventObj)=>{
+    this.props.deleteEvent(eventObj)
+  }
+
   renderEvents=()=>{
     return this.props.events.map(event=> {
-      return <EventCard key={event.id} event={event}/>
+      return <EventCard key={event.id} event={event} deleteEvent={this.deleteEvent}/>
     })
   }
 

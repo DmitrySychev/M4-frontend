@@ -23,7 +23,7 @@ class App extends React.Component{
 
 
   signupHandler = (userObj) => {
-    fetch("http://localhost:3001/api/v1/users", {
+    fetch("http://localhost:3000/api/v1/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ class App extends React.Component{
 
   loginHandler = (userInfo) => {
     console.log("user obj from login form", userInfo)
-    fetch("http://localhost:3001/api/v1/login", {
+    fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,7 @@ class App extends React.Component{
   }
 
   eventHandler = (event) => {
-      fetch("http://localhost:3001/events/", { 
+      fetch("http://localhost:3000/events/", { 
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +69,7 @@ class App extends React.Component{
   }
 
   getEvents = () => {
-    fetch('http://localhost:3001/events')
+    fetch('http://localhost:3000/events')
       .then(res => res.json())
       .then(data => this.setState({ events: data.events}))
   }
@@ -78,7 +78,7 @@ class App extends React.Component{
     this.getEvents()
     const token = localStorage.getItem("token")
     if (token) {
-      fetch("http://localhost:3001/api/v1/profile", {
+      fetch("http://localhost:3000/api/v1/profile", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}`},
       })
@@ -90,6 +90,12 @@ class App extends React.Component{
   }
 
   
+  deleteEvent=(eventObj)=>{
+    fetch("http://localhost:3000/events"+ eventObj.id, {method: "DELETE"})
+    const newEventsArray = this.state.events.filter(event => event.id !== eventObj.id)
+    this.setState({ events: newEventsArray}, console.log("new events array", this.state.events))
+    console.log("event obj in app", eventObj)
+  }
 
   render() {
     return (
@@ -106,7 +112,7 @@ class App extends React.Component{
             <CreateEvent submitHandler={this.eventHandler}/>
           </Route>
           <Route path="/">
-            <Home events={this.state.events}/>
+            <Home events={this.state.events} deleteEvent={this.deleteEvent}/>
           </Route>
         </Switch>
 
