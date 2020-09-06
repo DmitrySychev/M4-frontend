@@ -28,13 +28,13 @@ state = {
         <>
     <Navbar />
 
-      <Container text style={{ marginTop: '7em' }}>
+      {/* <Container text style={{ marginTop: '7em' }}>
       <Container> 
       <Segment>
         <button onClick={this.props.logoutHandler}>Logout</button>
       </Segment>
     </Container>
-      </Container>
+      </Container> */}
 
       <Container inverted style={{ marginTop: '7em' }}>
           <Segment className="ui grid container">       

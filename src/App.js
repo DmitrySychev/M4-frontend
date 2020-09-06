@@ -4,6 +4,7 @@ import Home from './components/Home.jsx'
 import LoginForm from './components/Login.jsx'
 import SignupForm from './components/Signup.jsx'
 import CreateEvent from './components/CreateEvent.jsx'
+import Navbar from './components/Navbar.jsx'
 import EventsHomeContainer from './containers/EventsHomeContainer.jsx'
 import {  
   Switch,
@@ -34,7 +35,7 @@ class App extends React.Component{
   }
 
   loginHandler = (userInfo) => {
-    console.log("user obj from login form", userInfo)
+    // console.log("user obj from login form", userInfo)
     fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
@@ -52,12 +53,6 @@ class App extends React.Component{
       })
   }
 
-  logoutHandler=()=>{
-    localStorage.removeItem('token')
-    this.props.history.push('/login')
-    this.setState({ user: null })
-    console.log('success')
-  }
 
   eventHandler = (event) => {
       fetch("http://localhost:3000/events/", { 
@@ -125,19 +120,18 @@ class App extends React.Component{
       return <Route path="/" render={() => <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
     }
     return (
-  
-    
+        <>
+        <Navbar data={this.props.history}/>
         <Switch>
           <Route path="/login" render={() => <LoginForm submitHandler={this.loginHandler}/>} />
           <Route path="/signup" render={() => <SignupForm submitHandler={this.signupHandler}/>} />
 
-  
           <Route path="/createevent" render={() => <CreateEvent user={this.state.user} submitHandler={this.eventHandler}/>}/>
 
           <Route path="/events" render={() => <EventsHomeContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
           <Route path="/" render={() => <Home events={this.state.events} logoutHandler={this.logoutHandler} />}/>
         </Switch>
-
+        </>
       )
   };
 }
