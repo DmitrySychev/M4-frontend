@@ -138,7 +138,16 @@ class App extends React.Component{
 
           <Route path="/createevent" render={() => <CreateEvent user={this.state.user} submitHandler={this.eventHandler}/>}/>
           <Route path="/events" render={() => <EventsHomeContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
-          <Route path="/" render={() => <Home events={this.state.events} logoutHandler={this.logoutHandler} />}/>
+
+          {this.state.user ? 
+            <Route path="/" render={() => <EventsHomeContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
+
+            :  
+
+            <Route path="/" render={() => <Home events={this.state.events} logoutHandler={this.logoutHandler} />}/>
+          }
+          
+          
         </Switch>
 
       )
