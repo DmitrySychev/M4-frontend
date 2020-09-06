@@ -45,7 +45,7 @@ class App extends React.Component{
     })
       .then(res => res.json())
       .then(data => {
-        // console.log("token:", data.jwt)
+        console.log("token:", data.jwt)
         console.log("data.user", data.user)
         localStorage.setItem("token", data.jwt)
         this.setState({ user: data.user }, () => this.props.history.push("/") )
@@ -75,14 +75,18 @@ class App extends React.Component{
   }
 
   getEvents = () => {
-    fetch('http://localhost:3000/events')
+    const token = localStorage.getItem("token")
+    fetch('http://localhost:3000/events', {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}`},
+    })
       .then(res => res.json())
       .then(data => this.setState({ events: data.events, redirected: false}))
       // .then(console.log(this.state))
   }
 
   componentDidMount() {
-    this.getEvents()
+    // this.getEvents()
     const token = localStorage.getItem("token")
     if (token) {
       fetch("http://localhost:3000/api/v1/profile", {
@@ -90,7 +94,7 @@ class App extends React.Component{
         headers: { Authorization: `Bearer ${token}`},
       })
       .then(resp => resp.json())
-      .then(data => this.setState({ user: data.user }))
+      .then(data => this.setState({ user: data.user }, ()=> this.getEvents()) )
     }  else {
       this.props.history.push("/login")
     }
@@ -120,10 +124,11 @@ class App extends React.Component{
   }
 
   render() {
-    const { redirected } = this.state
-    if (redirected) {
-      return <Route path="/" render={() => <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
-    }
+    // const { redirected } = this.state
+    // if (redirected) {
+    //   return <Route path="/" render={() => <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
+    // }
+    console.log(this.state.user)
     return (
   
     
@@ -131,9 +136,7 @@ class App extends React.Component{
           <Route path="/login" render={() => <LoginForm submitHandler={this.loginHandler}/>} />
           <Route path="/signup" render={() => <SignupForm submitHandler={this.signupHandler}/>} />
 
-  
           <Route path="/createevent" render={() => <CreateEvent user={this.state.user} submitHandler={this.eventHandler}/>}/>
-
           <Route path="/events" render={() => <EventsHomeContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
           <Route path="/" render={() => <Home events={this.state.events} logoutHandler={this.logoutHandler} />}/>
         </Switch>

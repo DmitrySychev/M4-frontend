@@ -9,7 +9,8 @@ class EventsHomeContainer extends React.Component {
 
 
     render() {
-        return (  
+        console.log("user", this.props.user)
+        return ( 
             <>
             { this.props.user ?
             <>
@@ -21,7 +22,8 @@ class EventsHomeContainer extends React.Component {
             
             :
 
-            <Redirect to='/signup' />
+            <div><h1>no user object on props</h1></div>
+            /* <Redirect to='/signup' /> */
             
             }
         </>
