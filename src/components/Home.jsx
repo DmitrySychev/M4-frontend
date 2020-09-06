@@ -6,19 +6,27 @@ import {
   Segment,
 } from 'semantic-ui-react';
 import HomeEventCard from './HomeEventCard.jsx';
+import EventCard from './EventCard'
 
 
 class Home extends React.Component{
 
-state = {
-  user: null
-}
-
 
   renderEvents=()=>{
-    return this.props.events.map(event=> {
-      return <HomeEventCard key={event.id} event={event} />
+    if(this.props.user){
+      return this.props.events.map(event=> {
+        return <EventCard 
+            key={event.id} 
+            event={event} 
+            joinEvent={this.props.joinEvent} 
+            deleteEvent={this.props.deleteEvent}/>
+      })
+    }else{return this.props.events.map(event=> {
+      return <HomeEventCard 
+          key={event.id} 
+          event={event} />
     })
+  }
   }
 
 
@@ -26,15 +34,17 @@ state = {
   render(){
     return (
         <>
-    <Navbar />
+        <Navbar />
 
-      {/* <Container text style={{ marginTop: '7em' }}>
+      <Container text style={{ marginTop: '7em' }}>
       <Container> 
       <Segment>
         <button onClick={this.props.logoutHandler}>Logout</button>
       </Segment>
     </Container>
-      </Container> */}
+      </Container>
+
+
 
       <Container inverted style={{ marginTop: '7em' }}>
           <Segment className="ui grid container">       
@@ -48,4 +58,5 @@ state = {
   }
 
 }
+
 export default Home;

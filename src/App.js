@@ -55,9 +55,11 @@ class App extends React.Component{
 
 
   eventHandler = (event) => {
+    const token = localStorage.getItem("token")
       fetch("http://localhost:3000/events/", { 
         method: 'POST',
         headers: {
+          "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json",
           Accept: "application/json"
         },
@@ -129,7 +131,12 @@ class App extends React.Component{
           <Route path="/createevent" render={() => <CreateEvent user={this.state.user} submitHandler={this.eventHandler}/>}/>
 
           <Route path="/events" render={() => <EventsHomeContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
-          <Route path="/" render={() => <Home events={this.state.events} logoutHandler={this.logoutHandler} />}/>
+
+          <Route path="/myevents" render={() => <EventsHomeContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>   
+          
+
+          <Route path="/" render={() => <Home user={this.state.user} events={this.state.events} logoutHandler={this.logoutHandler} />}/>
+
         </Switch>
         </>
       )

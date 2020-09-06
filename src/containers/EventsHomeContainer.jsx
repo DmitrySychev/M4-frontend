@@ -14,7 +14,7 @@ class EventsHomeContainer extends React.Component {
             { this.props.user ?
             <>
             <Navbar />
-            <EventsContainer events={this.props.events} joinEvent={this.props.joinEvent} deleteEvent={this.props.deleteEvent}/>
+            <EventsContainer events={this.props.events} user={this.props.user} joinEvent={this.props.joinEvent} deleteEvent={this.props.deleteEvent}/>
             <RecommendationContainer />
             <Footer />
             </>

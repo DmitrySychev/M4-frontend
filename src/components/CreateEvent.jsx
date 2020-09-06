@@ -48,8 +48,7 @@ class CreateEvent extends React.Component {
         description: '',
         date: '',
         category: '',
-        thumbnail: '',
-        user_id: 27
+        thumbnail: ''
     }
 
     changeHandler = (e, {name}) => {
