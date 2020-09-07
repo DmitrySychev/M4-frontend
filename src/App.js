@@ -124,7 +124,7 @@ class App extends React.Component{
       console.log("render show page")
     }
 
-    deleteUserEvent=(eventId)=>{
+    deleteUserEvent=(eventId)=>{ //not working yet
     // need to get current_user dynamically from backend in order to delete the user_event
     const token = localStorage.getItem("token")
     fetch("http://localhost:3000/user_events/", { 
