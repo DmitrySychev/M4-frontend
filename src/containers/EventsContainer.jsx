@@ -63,6 +63,7 @@ renderJoinedEvents=()=>{
                 <h1>Events I'm Attending</h1>      
                     {this.renderJoinedEvents()}
                 </Segment>
+                
 
                 <Segment>
                 <h1>Events I'm Hosting</h1>

@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Home from './components/Home.jsx'
 import LoginForm from './components/Login.jsx'
 import SignupForm from './components/Signup.jsx'
 import CreateEvent from './components/CreateEvent.jsx'
