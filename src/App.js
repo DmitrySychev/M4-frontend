@@ -5,7 +5,7 @@ import LoginForm from './components/Login.jsx'
 import SignupForm from './components/Signup.jsx'
 import CreateEvent from './components/CreateEvent.jsx'
 import Navbar from './components/Navbar.jsx'
-import EventsHomeContainer from './containers/EventsHomeContainer.jsx'
+import EventsContainer from './containers/EventsContainer.jsx'
 import {  
   Switch,
   Route,
@@ -35,7 +35,6 @@ class App extends React.Component{
   }
 
   loginHandler = (userInfo) => {
-    // console.log("user obj from login form", userInfo)
     fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
@@ -111,9 +110,8 @@ class App extends React.Component{
   
   deleteEvent=(eventObj)=>{
     const newEventsArray = this.state.events.filter(event => event.id !== eventObj.id)
-    console.log("event obj ID in app", eventObj.id)
     fetch("http://localhost:3000/events/"+eventObj.id, {method: "DELETE"})
-      .then(this.setState({ events: newEventsArray}, console.log("new events array", this.state.events))) //working
+      .then(this.setState({ events: newEventsArray})) //working
   }
 
   render() {
@@ -130,11 +128,9 @@ class App extends React.Component{
 
           <Route path="/createevent" render={() => <CreateEvent user={this.state.user} submitHandler={this.eventHandler}/>}/>
 
-          <Route path="/events" render={() => <EventsHomeContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
-
-          <Route path="/myevents" render={() => <EventsHomeContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>   
+          <Route path="/me/events" render={() => <EventsContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>   
           
-
+          <Route path="/events" render={() => <Home user={this.state.user} events={this.state.events} logoutHandler={this.logoutHandler} />}/>
           <Route path="/" render={() => <Home user={this.state.user} events={this.state.events} logoutHandler={this.logoutHandler} />}/>
 
         </Switch>

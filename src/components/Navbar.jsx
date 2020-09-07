@@ -30,13 +30,12 @@ render() {
     <Dropdown item simple text='Pandemic Events' as={Link} to='/' header left floated>
       <Dropdown.Menu>
         <Dropdown.Item as={Link} to='/createevent'>Host an Event</Dropdown.Item>
-        <Dropdown.Item as={Link} to='/events'>My Events</Dropdown.Item>
+        <Dropdown.Item as={Link} to='/me/events'>My Events</Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Header>Header Item</Dropdown.Header>
         <Dropdown.Item>Events Home</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
-    {console.log(this.state)}
     <div class='right item'>
     <Menu.Item as={Link} to='/signup' >Signup</Menu.Item>
 

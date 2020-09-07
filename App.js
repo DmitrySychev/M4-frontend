@@ -32,7 +32,7 @@ class App extends React.Component{
       body: JSON.stringify({ user: userObj })
     })
       .then(res => res.json())
-      .then(console.log)
+      // .then(console.log)
   }
 
   loginHandler = (userInfo) => {
@@ -92,7 +92,6 @@ class App extends React.Component{
 
 
   newUserEvent=(eventId, userId)=>{
-    console.log("in app", eventId, userId)
 
     fetch("http://localhost:3000/user_events/", { 
         method: 'POST',
@@ -108,9 +107,8 @@ class App extends React.Component{
   
   deleteEvent=(eventObj)=>{
     const newEventsArray = this.state.events.filter(event => event.id !== eventObj.id)
-    console.log("event obj ID in app", eventObj.id)
     fetch("http://localhost:3000/events/"+eventObj.id, {method: "DELETE"})
-      .then(this.setState({ events: newEventsArray}, console.log("new events array", this.state.events))) //working
+      .then(this.setState({ events: newEventsArray})) //working
   }
 
   render() {

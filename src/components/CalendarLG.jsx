@@ -32,7 +32,7 @@ class CalendarLG extends React.Component {
   };
 
   onEventDrop = (data) => {
-    console.log(data);
+    // console.log(data);
   };
 
   render() {
