@@ -28,20 +28,20 @@ class EventCard extends React.Component{
             </Card.Description>
  
  
-            {this.props.created === true ?  
+            {this.props.created === true && this.props.joined === true ?  
             <>
             <button onClick={()=> this.props.deleteEvent(this.props.event.id)}>Delete Event</button><br/><br/>
             </>
             :
             null}
 
-            {this.props.joined === false ? 
+            {this.props.joined === true && this.props.created === false ? 
             <div>
-            <button onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</button>
+            <button onClick={()=> this.props.deleteUserEvent(this.props.event.id)}>No longer attending</button>
             </div>
             :
             <div>
-            <button onClick={()=> this.props.deleteUserEvent(this.props.event.id)}>No longer attending</button>
+            <button onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</button>
             </div>
             } 
 
