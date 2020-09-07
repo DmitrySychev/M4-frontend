@@ -4,7 +4,12 @@ import { Popup, Card, Image, Rating } from 'semantic-ui-react'
 
 class EventCard extends React.Component{
 
-             //* first level of if function: if this.props.loggedIn === true, display buttons
+
+  state={
+    joined: null
+  }
+
+             //* first level of if function: if there is not a user object, render buttons but they reroute to signin 
             //* second level if: if this.props.created === true, display the delete event button
             //* second level if: if this.props.joined === false, display joinEvent button, else display deleteUserEvent button ("no longer attending")
 
@@ -30,7 +35,7 @@ class EventCard extends React.Component{
             :
             null}
 
-            {this.props.joined === "false" ? 
+            {this.props.joined === false ? 
             <div>
             <button onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</button>
             </div>
@@ -38,7 +43,11 @@ class EventCard extends React.Component{
             <div>
             <button onClick={()=> this.props.deleteUserEvent(this.props.event.id)}>No longer attending</button>
             </div>
-            }            
+            } 
+
+            <div>
+            <button onClick={()=> this.props.learnMore(this.props.event.id)}>Learn More</button>
+            </div>           
           </Card.Content>
         </Card>
         </>

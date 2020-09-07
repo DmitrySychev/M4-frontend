@@ -15,25 +15,17 @@ class Home extends React.Component{
 
   renderEvents=()=>{
     if(this.props.user){return this.props.events.map(event=> {
+
                                                     return <EventCard
                                                     loggedIn="true" 
-                                                    joined="true"
+                                                    joined="false"
                                                     key={event.id} 
                                                     event={event} 
                                                     joinEvent={this.props.joinEvent} 
                                                     deleteEvent={this.props.deleteEvent}
                                                     />
                                                       })
-    } else{
-      return this.props.events.map(event=> {
-      return <EventCard 
-          key={event.id} 
-          event={event} 
-          joinEvent={this.props.joinEvent} 
-          deleteEvent={this.props.deleteEvent}
-          joined="true" />
-    })
-  }
+                      }
   }
 
 
