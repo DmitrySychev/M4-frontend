@@ -17,7 +17,9 @@ class App extends React.Component{
   state = {
     events: [],
     user: null,
-    redirected: false
+    // redirected: false,
+    joinedEvents: [],
+    createdEvents: []
   }
 
 
@@ -52,8 +54,38 @@ class App extends React.Component{
       })
   }
 
+  getEvents = () => {
+    fetch('http://localhost:3000/events')
+      .then(res => res.json())
+      .then(data => this.setState({ events: data.events, redirected: false}))
+      // .then(console.log(this.state))
+  }
 
-  eventHandler = (event) => {
+  componentDidMount() {
+    this.getEvents()
+    //gets profile information
+    const token = localStorage.getItem("token")
+    if (token) {
+      fetch("http://localhost:3000/api/v1/profile", {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}`},
+      })
+      .then(resp => resp.json())
+      .then(data => this.setState({ user: data.user }))
+    }  else {
+      this.props.history.push("/login")
+    }
+    // gets events by user, joined and created
+      fetch('http://localhost:3000/me/events', {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}`},
+        })
+      .then(resp => resp.json())
+      .then(resp => this.setState({joinedEvents: resp.joined_events, createdEvents: resp.created_events}))
+  }
+
+
+  createEvent = (event) => {
     const token = localStorage.getItem("token")
       fetch("http://localhost:3000/events/", { 
         method: 'POST',
@@ -70,55 +102,48 @@ class App extends React.Component{
       
   }
 
-  getEvents = () => {
-    fetch('http://localhost:3000/events')
-      .then(res => res.json())
-      .then(data => this.setState({ events: data.events, redirected: false}))
-      // .then(console.log(this.state))
-  }
-
-  componentDidMount() {
-    this.getEvents()
-    const token = localStorage.getItem("token")
-    if (token) {
-      fetch("http://localhost:3000/api/v1/profile", {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}`},
-      })
-      .then(resp => resp.json())
-      .then(data => this.setState({ user: data.user }))
-    }  else {
-      this.props.history.push("/login")
-    }
-  }
-
-
-  newUserEvent=(eventId, userId)=>{
-    console.log("in app", eventId, userId)
-
-    fetch("http://localhost:3000/user_events/", { 
+  newUserEvent=(eventId)=>{
+  // need to get current_user dynamically from backend in order to create the user_event
+  const token = localStorage.getItem("token")
+      fetch("http://localhost:3000/user_events/", { 
         method: 'POST',
         headers: {
+          "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json",
           Accept: "application/json"
         },
-        body: JSON.stringify({ event_id: eventId, user_id: userId })
+        body: JSON.stringify({ eventId: eventId })
       })
-      .then(res => res.json())
+        .then(res => res.json())
 
-  }
+    }
+
+    deleteUserEvent=(eventId)=>{
+    // need to get current_user dynamically from backend in order to delete the user_event
+    const token = localStorage.getItem("token")
+    fetch("http://localhost:3000/user_events/", { 
+      method: 'DELETE',
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ eventId: eventId })
+    })
+      .then(res => res.json())
+    }
   
-  deleteEvent=(eventObj)=>{
-    const newEventsArray = this.state.events.filter(event => event.id !== eventObj.id)
-    fetch("http://localhost:3000/events/"+eventObj.id, {method: "DELETE"})
+  deleteEvent=(eventObjId)=>{
+    const newEventsArray = this.state.events.filter(event => event.id !== eventObjId)
+    fetch("http://localhost:3000/events/"+eventObjId, {method: "DELETE"})
       .then(this.setState({ events: newEventsArray})) //working
   }
 
   render() {
-    const { redirected } = this.state
-    if (redirected) {
-      return <Route path="/" render={() => <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
-    }
+    // const { redirected } = this.state
+    // if (redirected) {
+    //   return <Route path="/" render={() => <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
+    // }
     return (
         <>
         <Navbar data={this.props.history}/>
@@ -126,12 +151,30 @@ class App extends React.Component{
           <Route path="/login" render={() => <LoginForm submitHandler={this.loginHandler}/>} />
           <Route path="/signup" render={() => <SignupForm submitHandler={this.signupHandler}/>} />
 
-          <Route path="/createevent" render={() => <CreateEvent user={this.state.user} submitHandler={this.eventHandler}/>}/>
+          <Route path="/createevent" render={() => <CreateEvent 
+                                                    user={this.state.user} 
+                                                    submitHandler={this.createEvent}/>}/>
 
-          <Route path="/me/events" render={() => <EventsContainer user={this.state.user} events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>   
+          <Route path="/me/events" render={() => <EventsContainer 
+                                                user={this.state.user} 
+                                                joinedEvents={this.state.joinedEvents} 
+                                                createdEvents={this.state.createdEvents} 
+                                                events={this.state.events} 
+                                                deleteEvent={this.deleteEvent} 
+                                                joinEvent={this.newUserEvent}/>}/>   
           
-          <Route path="/events" render={() => <Home user={this.state.user} events={this.state.events} logoutHandler={this.logoutHandler} />}/>
-          <Route path="/" render={() => <Home user={this.state.user} events={this.state.events} logoutHandler={this.logoutHandler} />}/>
+          <Route path="/events" render={() => <Home 
+                                              user={this.state.user} 
+                                              events={this.state.events} 
+                                              logoutHandler={this.logoutHandler}
+                                              joinedEvents={this.state.joinedEvents} 
+                                              createdEvents={this.state.createdEvents} />}/>
+          <Route path="/" render={() => <Home 
+                                        user={this.state.user} 
+                                        events={this.state.events} 
+                                        logoutHandler={this.logoutHandler} 
+                                        joinedEvents={this.state.joinedEvents} 
+                                        createdEvents={this.state.createdEvents}/>}/>
 
         </Switch>
         </>

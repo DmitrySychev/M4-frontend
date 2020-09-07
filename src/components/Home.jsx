@@ -5,26 +5,33 @@ import {
   Container,
   Segment,
 } from 'semantic-ui-react';
-import HomeEventCard from './HomeEventCard.jsx';
 import EventCard from './EventCard'
 
 
 class Home extends React.Component{
 
 
+// it is the responsibility of Home to render the event cards with the right props, which determine whether certain buttons are rendered
+
   renderEvents=()=>{
-    if(this.props.user){
+    if(this.props.user){return this.props.events.map(event=> {
+                                                    return <EventCard
+                                                    loggedIn="true" 
+                                                    joined="true"
+                                                    key={event.id} 
+                                                    event={event} 
+                                                    joinEvent={this.props.joinEvent} 
+                                                    deleteEvent={this.props.deleteEvent}
+                                                    />
+                                                      })
+    } else{
       return this.props.events.map(event=> {
-        return <EventCard 
-            key={event.id} 
-            event={event} 
-            joinEvent={this.props.joinEvent} 
-            deleteEvent={this.props.deleteEvent}/>
-      })
-    }else{return this.props.events.map(event=> {
-      return <HomeEventCard 
+      return <EventCard 
           key={event.id} 
-          event={event} />
+          event={event} 
+          joinEvent={this.props.joinEvent} 
+          deleteEvent={this.props.deleteEvent}
+          joined="true" />
     })
   }
   }

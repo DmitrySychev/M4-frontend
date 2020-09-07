@@ -8,45 +8,54 @@ import Footer from '../components/Footer.jsx'
 class EventsContainer extends React.Component {
 
 
+// it is the responsibility of the EventsContainer to render the event cards with the right props, which determine whether certain buttons are rendered
 
-    componentDidMount=()=>{
-        fetch('http://localhost:3000/me/events')
-        .then(resp => resp.json())
-        .then(console.log)
-    }
 
-    renderEventsByUser=()=>{
-        return <h1> Events I'm attending </h1>
+
+
+    renderEventsByUser=()=>{ //renders events joined by user
+        return this.props.joinedEvents.map(event => {
+            return <EventCard 
+                    key={event.id} 
+                    loggedIn="true"
+                    joined="true" 
+                    created="false" 
+                    event={event} 
+                    deleteUserEvent={this.props.deleteUserEvent}>
+                    </EventCard>
+        })
     }
    
-    renderCreatedEvents=()=>{ //fetch request to backend
-        return <h1>Events I've created</h1>
-        const eventsCreatedByUser = this.props.events.filter(event => event.user_id !== this.props.user.id)
-        return this.props.events.map(event=> {
-            return <EventCard key={event.id} event={event} joinEvent={this.props.joinEvent} deleteEvent={this.props.deleteEvent}/>      
-         })
+    renderCreatedEvents=()=>{ //renders events created by user
+        return this.props.createdEvents.map(event => {
+            return <EventCard 
+                    key={event.id} 
+                    loggedIn="true"
+                    joined="true" 
+                    created="true" 
+                    deleteEvent={this.props.deleteEvent} 
+                    event={event} 
+                    deleteUserEvent={this.deleteUserEvent}></EventCard>
+        })    
     }
 
 
-    // renderEvents=()=>{
-    //     return this.props.events.map(event=> {
-    //        return <EventCard key={event.id} event={event} joinEvent={this.props.joinEvent} deleteEvent={this.props.deleteEvent}/>
-    //     })
-    //   }
-
-
-    render() {
-        
+    render() {       
         return (
             <>
             { this.props.user ?
             <Container inverted style={{ marginTop: '7em' }}>
                 <Segment className="ui grid container"> 
-                    {this.renderEventsByUser()}
-                    {this.renderCreatedEvents()}
+                    
+                <div><h1>Events I'm attending</h1>{this.renderEventsByUser()}</div>
+                <div><h1>Manage my created events</h1>{this.renderCreatedEvents()}</div>
+                    
 
 
-                    <RecommendationsContainer/>
+                    <RecommendationsContainer 
+                    events={this.props.events} 
+                    joinedEvents={this.props.joinedEvents} 
+                    createdEvents={this.props.createdEvents}/>
 
                 </Segment>
                 <Footer />
