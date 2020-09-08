@@ -10,18 +10,41 @@ class EventCard extends React.Component{
              //* first level of if function: if there is not a user object, render buttons but they reroute to signin 
             //* second level if: if this.props.created === true, display the delete event button
             //* second level if: if this.props.joined === false, display joinEvent button, else display deleteUserEvent button ("no longer attending")
-  joinedAndNotCreated=()=>{
-    // console.log(this.props)
-    return this.props.joined === 'true' && this.props.created === 'false' ?
-              
-    <Button size="small" onClick={()=> this.props.deleteUserEvent(this.props.event.id)}>No longer attending</Button>
-                                                      // looking for the wrong id, need user_event id, not event id
-    :     
-    <Button size="small" onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</Button>
+
+
+  userStatus = () => {
+    
+    if (this.props.user) {
+        if (this.props.joinedEvents !== undefined) {
+          if (this.findJoinedEventsId()) {
+            return (
+            <Button size="small" onClick={()=> this.props.deleteUserEvent(this.props.event.id)}>No longer attending</Button>
+            )
+          }
+          
+          return (
+            <Button size="small" onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</Button>
+          )
+        }
+
+    } else {
+
+      return (
+        <>
+        <Button size="small" as={Link} to="/login">Join Event</Button>
+        </>
+      )
+    }
+ 
   }
 
+  findJoinedEventsId = () => {
+    const joinedEventsMap = this.props.joinedEvents.map(event => event.id)
+    return joinedEventsMap.includes(this.props.event.id)
+  }
+
+
   render(){
-  
     return (
      
       <>
@@ -31,28 +54,15 @@ class EventCard extends React.Component{
           <Card.Content>
             <Card.Header>{this.props.event.title}</Card.Header>
             <div id="date">Date: {this.props.event.date}</div>
-            <Card.Description>
+            <Card.Description >
               {this.props.event.description}
             </Card.Description>
  
             <Container >
               <Segment vertical='true'>
+              {this.userStatus()}
+              <Button size='small' as={Link} to={'/events/' + this.props.event.id}   >Learn More</Button>
 
-              { this.props.user ?
-              
-              this.joinedAndNotCreated()
-                :
-              <Button size="small" as={Link} to="/login">Join Event</Button>}
-
-              {this.props.created === 'true' ?  
-                  <Button size='small' onClick={()=> this.props.deleteEvent(this.props.event.id)} >Delete Event</Button>
-                      
-                    :
-
-                  console.log('')
-              }
-
-                <Button size='small' as={Link} to={'/events/' + this.props.event.id}   >Learn More</Button>
               </Segment>
             </Container>
 

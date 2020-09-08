@@ -10,16 +10,17 @@ import { Link } from 'react-router-dom';
 
 class Navbar extends React.Component { 
 
-  state = {
-    user: localStorage.token,
-    data: this.props.data
-  }
+  // state = {
+  //   user: 'this.props.user'
+  // }
 
   logoutHandler=()=>{
     localStorage.removeItem('token')
     window.location.reload()
     console.log('success')
   }
+  
+
 
 render() { 
 
@@ -30,7 +31,7 @@ render() {
     <Dropdown item simple text='Pandemic Events' as={Link} to='/' left >
       <Dropdown.Menu>
 
-        {this.state.user === undefined ? 
+        {this.props.user === undefined || this.props.user === null ? 
         <>
         <Dropdown.Item text='My Events' as={Link} to='/login' />
         <Dropdown.Item text='Host an Event' as={Link} to='/login' />
@@ -52,13 +53,13 @@ render() {
     
   { 
   
-    this.state.user === undefined ?
-
+    this.props.user === undefined || this.props.user === null ?
+    
+    
     <Menu.Item as={Link} to='/login' >Login</Menu.Item>
-
     :
-
     <Menu.Item onClick={() => this.logoutHandler()} >Logout</Menu.Item>
+    
     
   }
 
