@@ -24,8 +24,17 @@ class EventShowPage extends React.Component{
     })
   }
 
+  mapAtendees=()=>{
+    this.state.atendees ? 
+
+    this.state.atendees.map(atendee => atendee)
+    :
+    "There's no one attending this event yet!"
+
+  }
+
   render() {
-    console.log(this.state)
+    console.log(this.state.attendees)
     return (
 
       this.state.event ? 
@@ -43,7 +52,7 @@ class EventShowPage extends React.Component{
            <Segment size='large'>
               <Image src='https://ca-times.brightspotcdn.com/dims4/default/90f23c8/2147483647/strip/true/crop/2400x1600+0+0/resize/1486x991!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F91%2F37%2Ff1c988db40109234e505b4891a05%2Fla-zoom-party-etiquette.jpg' />
             </Segment>
-         }
+          }
 
             <Segment size='large'>
               <Header text='title' textAlign='center'>{this.state.event.title}</Header>
@@ -54,7 +63,7 @@ class EventShowPage extends React.Component{
             </Segment>
 
             <Segment size='large'>
-                <Header>All Users Attending Event</Header>
+                Here's everyone that's attendting this event: {''}
             </Segment>
 
         </Container>
