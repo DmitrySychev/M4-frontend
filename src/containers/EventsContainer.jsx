@@ -54,7 +54,7 @@ class EventsContainer extends React.Component {
 
 
     render() { 
-        // console.log(this.props.joinedEvents)
+        console.log(this.props)
         return (
                 <>
 

@@ -12,9 +12,8 @@ callDeleteUserEvent=(eventId)=>{
     this.props.deleteUserEvent(eventId)
   }else{
     console.log("no props delete user event")
-             //* first level of if function: if there is not a user object, render buttons but they reroute to signin 
-            //* second level if: if this.props.created === true, display the delete event button
-            //* second level if: if this.props.joined === false, display joinEvent button, else display deleteUserEvent button ("no longer attending")
+  }}
+ 
 
 
   userStatus = () => {
@@ -27,7 +26,6 @@ callDeleteUserEvent=(eventId)=>{
             <Button size="small" onClick={()=> this.props.deleteUserEvent(this.props.event.id)}>No longer attending</Button>
             )
           }
-          
           return (
             <Button size="small" onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</Button>
           )
@@ -43,25 +41,20 @@ callDeleteUserEvent=(eventId)=>{
     }
  
   }
-}
 
-  joinedAndNotCreated=()=>{
-    return this.props.joined === 'true' && this.props.created === 'false' ?
-            
-    <Button size="small" onClick={()=> this.callDeleteUserEvent(this.props.event.id)}>No longer attending</Button>
-                                                      // looking for the wrong id, need user_event id, not event id
-    :     
-    <Button size="small" onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</Button>
+
+  findJoinedEventsId = () => {
+    const joinedEventsMap = this.props.joinedEvents.map(event => event.id)
+    return joinedEventsMap.includes(this.props.event.id)
   }
 
 
-  render(){
-    console.log("props in event card", this.props)
+  render() {
+    // console.log("props in event card", this.props)
   
     return (
      
       <>
-       
         <Card className="four wide column" >
           <Image src='https://ca-times.brightspotcdn.com/dims4/default/90f23c8/2147483647/strip/true/crop/2400x1600+0+0/resize/1486x991!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F91%2F37%2Ff1c988db40109234e505b4891a05%2Fla-zoom-party-etiquette.jpg' />
           <Card.Content>
@@ -74,7 +67,7 @@ callDeleteUserEvent=(eventId)=>{
             <Container >
               <Segment vertical='true'>
               {this.userStatus()}
-              <Button size='small' as={Link} to={'/events/' + this.props.event.id}   >Learn More</Button>
+              <Button size='small' as={Link} to={'/events/' + this.props.event.id} >Learn More</Button>
 
               </Segment>
             </Container>
@@ -86,8 +79,8 @@ callDeleteUserEvent=(eventId)=>{
       )}
   
   
-  }
   
+}
 
 
 

@@ -18,13 +18,15 @@ class AllEventsContainer extends React.Component {
                 joinedEvents={this.props.joinedEvents} 
                 learnMore={this.props.learnMore} 
                 joinEvent={this.props.joinEvent}
+                user={this.props.user}
                 deleteUserEvent={this.props.deleteUserEvent}
                 />
         })
     }
 
 
-    render() { 
+    render() {
+        console.log('inside all events cont', this.props) 
         return (
         <>
             

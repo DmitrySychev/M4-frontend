@@ -54,7 +54,7 @@ class App extends React.Component{
       .then(res => res.json())
       .then(data => {
         // console.log("token:", data.jwt)
-        console.log("data.user", data.user)
+        // console.log("data.user", data.user)
         localStorage.setItem("token", data.jwt)
         this.setState({ user: data.user }, () => {this.componentDidMount()})
         
@@ -216,7 +216,7 @@ findUserEvent=(eventId)=>{
           <Route path='/events/:id' render={() => 
                                                 <div>
                                                 <Navbar user={this.state.user} />
-                                                <EventShowPage />
+                                                <EventShowPage data={this.state.events}/>
                                                 </div>}  />
           
           <Route path="/events"   render={() => 
