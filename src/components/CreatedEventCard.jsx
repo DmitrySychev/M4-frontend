@@ -4,30 +4,12 @@ import { Link } from 'react-router-dom';
 import EventShowPage from '../components/EventShowPage.jsx'
 
 
-class EventCard extends React.Component{
+class CreatedEventCard extends React.Component{
 
-
-callDeleteUserEvent=(eventId)=>{
-  if(this.props.deleteUserEvent){
-    this.props.deleteUserEvent(eventId)
-  }else{
-    console.log("no props delete user event")
-  }
-}
-
-  joinedAndNotCreated=()=>{
-    return this.props.joined === 'true' && this.props.created === 'false' ?
-            
-    <Button size="small" onClick={()=> this.callDeleteUserEvent(this.props.event.id)}>No longer attending</Button>
-                                                      // looking for the wrong id, need user_event id, not event id
-    :     
-    <Button size="small" onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</Button>
-  }
 
 
   render(){
-    console.log("props in event card", this.props)
-  
+    console.log(this.props.createdEvents)
     return (
      
       <>
@@ -43,7 +25,7 @@ callDeleteUserEvent=(eventId)=>{
  
             <Container >
               <Segment vertical='true'>
-              {this.userStatus()}
+              <Button size='small' onClick={()=> this.props.deleteEvent(this.props.event.id)} >Delete Event</Button>
               <Button size='small' as={Link} to={'/events/' + this.props.event.id}   >Learn More</Button>
 
               </Segment>
@@ -61,7 +43,4 @@ callDeleteUserEvent=(eventId)=>{
 
 
 
-export default EventCard;
-
-
-
+export default CreatedEventCard;

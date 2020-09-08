@@ -10,7 +10,8 @@ class EventShowPage extends React.Component{
       console.log(this.props)
     return (
         <>
-        <Navbar />
+
+
         <Container>
             <Segment >
         
