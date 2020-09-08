@@ -25,16 +25,20 @@ class EventShowPage extends React.Component{
   }
 
   mapAtendees=()=>{
-    this.state.atendees ? 
+    if (this.state.attendees) {
+      
+     return this.state.attendees.map(atendee => atendee.username.split(''))
+        
+    } else {
 
-    this.state.atendees.map(atendee => atendee)
-    :
-    "There's no one attending this event yet!"
+     return  "There's no one attending this event yet!"
+    }
 
+    
   }
 
   render() {
-    console.log(this.state.attendees)
+    // console.log(this.state.attendees.map(atendee => atendee.username))
     return (
 
       this.state.event ? 
@@ -63,7 +67,7 @@ class EventShowPage extends React.Component{
             </Segment>
 
             <Segment size='large'>
-                Here's everyone that's attendting this event: {''}
+                Here's everyone that's attendting this event: {this.mapAtendees()}
             </Segment>
 
         </Container>
