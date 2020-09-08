@@ -12,6 +12,36 @@ callDeleteUserEvent=(eventId)=>{
     this.props.deleteUserEvent(eventId)
   }else{
     console.log("no props delete user event")
+             //* first level of if function: if there is not a user object, render buttons but they reroute to signin 
+            //* second level if: if this.props.created === true, display the delete event button
+            //* second level if: if this.props.joined === false, display joinEvent button, else display deleteUserEvent button ("no longer attending")
+
+
+  userStatus = () => {
+    
+    // refactored logic
+    if (this.props.user) {
+        if (this.props.joinedEvents !== undefined) {
+          if (this.findJoinedEventsId()) {
+            return (
+            <Button size="small" onClick={()=> this.props.deleteUserEvent(this.props.event.id)}>No longer attending</Button>
+            )
+          }
+          
+          return (
+            <Button size="small" onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</Button>
+          )
+        }
+
+    } else {
+
+      return (
+        <>
+        <Button size="small" as={Link} to="/login">Join Event</Button>
+        </>
+      )
+    }
+ 
   }
 }
 
