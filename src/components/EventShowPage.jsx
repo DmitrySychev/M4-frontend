@@ -6,7 +6,9 @@ import Footer from '../components/Footer.jsx'
 class EventShowPage extends React.Component{
 
   state = {
-    event: ''
+    event: '',
+    eventCreator: null,
+    attendees: null
   }
 
   componentDidMount() {
@@ -16,7 +18,10 @@ class EventShowPage extends React.Component{
 
     fetch("http://localhost:3000/events/"+eventId)
     .then(resp => resp.json())
-    .then(resp => console.log("found event from DB", resp))
+    .then(resp => {
+      // console.log("found event from DB", resp)
+      this.setState({eventCreator: resp.created_by.username, attendees: resp.attendees}, ()=>console.log(this.state))
+    })
   }
 
   render() {
