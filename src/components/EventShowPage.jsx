@@ -13,6 +13,10 @@ class EventShowPage extends React.Component{
     const eventId = window.location.href.split('/')[4]
     const foundEvent = this.props.data.find(ele => ele.id == eventId)
     this.setState({ event: foundEvent})
+
+    fetch("http://localhost:3000/events/"+eventId)
+    .then(resp => resp.json())
+    .then(resp => console.log("found event from DB", resp))
   }
 
   render() {
