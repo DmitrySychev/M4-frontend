@@ -15,8 +15,7 @@ import {
 
 class App extends React.Component{
 
-
-  // need to fetch the user_events dynamically, setting the props to joined isnt working
+//testing!!
 
   state = {
     events: [],
