@@ -14,29 +14,35 @@ const category = [
 
 const thumbs = [
     {
-      key: 'Jenny Hess',
-      text: 'Jenny Hess',
-      value: 'Jenny Hess',
-      image: { src: 'https://i.pinimg.com/236x/e9/9b/06/e99b06894c2ed43c0946092979b717a2--kawaii-marshmallow-cute-pics.jpg' },
+      key: 'zoomparty',
+      text: 'Zoom Party',
+      value: 'zoomparty',
+      image: { src: 'https://ca-times.brightspotcdn.com/dims4/default/9321c96/2147483647/strip/true/crop/2400x1350+0+125/resize/1200x675!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F91%2F37%2Ff1c988db40109234e505b4891a05%2Fla-zoom-party-etiquette.jpg' },
     },
     {
-      key: 'Elliot Fu',
-      text: 'Elliot Fu',
-      value: 'Elliot Fu',
-      image: { avatar: false, src: 'https://i.pinimg.com/236x/e9/9b/06/e99b06894c2ed43c0946092979b717a2--kawaii-marshmallow-cute-pics.jpg' },
+      key: 'happyhour',
+      text: 'Happy Hour',
+      value: 'happyhour',
+      image: { avatar: false, src: 'https://i.https://res.cloudinary.com/simpleview/image/upload/v1562609933/clients/palmsprings/HappyHour_shutterstock_9516081f-6dc6-4844-a64a-e8834ecf2831.jpg.com/236x/e9/9b/06/e99b06894c2ed43c0946092979b717a2--kawaii-marshmallow-cute-pics.jpg' },
     },
     {
-      key: 'Stevie Feliciano',
-      text: 'Stevie Feliciano',
-      value: 'Stevie Feliciano',
-      image: { avatar: false, src: 'https://i.pinimg.com/236x/e9/9b/06/e99b06894c2ed43c0946092979b717a2--kawaii-marshmallow-cute-pics.jpg' },
+      key: 'gamenight',
+      text: 'Game Night',
+      value: 'gamenight',
+      image: { avatar: false, src: 'https://i.https://mk0snacknationnm0gwv.kinstacdn.com/wp-content/uploads/2020/08/virtual_game_night.png.com/236x/e9/9b/06/e99b06894c2ed43c0946092979b717a2--kawaii-marshmallow-cute-pics.jpg' },
     },
     {
-      key: 'Christian',
-      text: 'Christian',
-      value: 'Christian',
-      image: { avatar: false, src: 'https://i.pinimg.com/236x/e9/9b/06/e99b06894c2ed43c0946092979b717a2--kawaii-marshmallow-cute-pics.jpg' },
+      key: 'politicaldiscussion',
+      text: 'Political Discussion',
+      value: 'politicaldiscussion',
+      image: { avatar: false, src: 'https://ourpolitics.net/wp-content/uploads/2018/02/pov620-twitter.jpg' },
     },
+    {
+      key: 'airbnb',
+      text: 'AirBnb Experience',
+      value: 'airbnb',
+      image: { avatar: false, src: 'https://www.nsbuzz.ca/wp-content/uploads/2020/06/airbnbexperiences.jpg' },
+    }
   ]
 
 
