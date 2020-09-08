@@ -77,22 +77,21 @@ componentDidMount(){
 
             <Container inverted style={{ marginTop: '7em' }}>
 
-                <Segment className="ui grid container"> 
+                
                 <h1>Events I'm Attending</h1>  
                     <Segment className="ui grid container">
                     {this.renderJoinedEvents()}
                     </Segment>    
-                </Segment>
+          
                 
             
-                <Segment className="ui grid container">
+                
                 <h1>Events I'm Hosting</h1>
                     <Segment className="ui grid container">
                         { this.renderCreatedEvents() }            
         
                     </Segment>
-                </Segment>
-
+               
 
                 <Segment className="ui grid container">
                 <RecommendationsContainer 

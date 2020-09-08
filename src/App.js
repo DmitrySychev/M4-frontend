@@ -131,24 +131,39 @@ class App extends React.Component{
     
     }
 
-  deleteUserEvent=(event)=>{ //not working yet
-    console.log(event)
-    // need to get current_user dynamically from backend in order to delete the user_event
-    // needs the user_event id
+  deleteUserEvent=(eventObj)=>{ //not working yet
+    let userEventsData = {}
+    const eventId = eventObj.id
     const token = localStorage.getItem("token")
-    fetch("http://localhost:3000/user_events/" + {event})
-      .then(res => res.json())
-      .then(console.log)
-    // fetch("http://localhost:3000/user_events/", { 
+
+    fetch("http://localhost:3000/user_events", {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}`},
+    })
+    .then(resp=> resp.json())
+    .then(data => {
+      userEventsData = data
+      console.log("data", data)
+    })
+
+    console.log("user events data", userEventsData)
+    const userEvents = userEventsData.user_events
+    const userId = userEventsData.user_id
+
+    const filteredByEventId = userEvents.filter(userEvent => userEvent.event_id === eventId)
+    const userEventToDelete = filteredByEventId.filter(userEvent => userEvent.user_id === userId )
+    console.log("delete this", userEventToDelete)
+
+    // fetch("http://localhost:3000/me/event/" + eventId, { 
     //   method: 'DELETE',
     //   headers: {
     //     "Authorization": `Bearer ${token}`,
     //     "Content-Type": "application/json",
     //     Accept: "application/json"
     //   },
-    //   body: JSON.stringify({ eventId: eventId })
     // })
     //   .then(res => res.json())
+    //   .then(console.log)
     }
   
   deleteEvent=(eventObjId)=>{
