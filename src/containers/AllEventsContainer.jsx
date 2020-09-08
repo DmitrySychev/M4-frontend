@@ -1,9 +1,9 @@
 import React, { useReducer } from 'react';
 import EventCard from '../components/EventCard'
-import { Container, Segment, Button } from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react'
 import RecommendationsContainer from './RecommendationsContainer.jsx';
 import Footer from '../components/Footer.jsx'
-import Navbar from '../components/Navbar.jsx'
+
 
 class AllEventsContainer extends React.Component {
 
@@ -26,7 +26,7 @@ class AllEventsContainer extends React.Component {
 
 
     render() {
-        console.log('inside all events cont', this.props) 
+     
         return (
         <>
             

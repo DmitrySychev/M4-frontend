@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Image, Button, Container, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-import EventShowPage from '../components/EventShowPage.jsx'
+
 
 
 class CreatedEventCard extends React.Component{

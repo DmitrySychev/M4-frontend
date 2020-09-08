@@ -4,7 +4,7 @@ import CreatedEventCard from '../components/CreatedEventCard'
 import { Container, Segment } from 'semantic-ui-react'
 import RecommendationsContainer from './RecommendationsContainer.jsx';
 import Footer from '../components/Footer.jsx'
-import Navbar from '../components/Navbar.jsx'
+
 
 class EventsContainer extends React.Component {
 
