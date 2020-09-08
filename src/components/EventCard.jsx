@@ -14,6 +14,7 @@ class EventCard extends React.Component{
 
   userStatus = () => {
     
+    // refactored logic
     if (this.props.user) {
         if (this.props.joinedEvents !== undefined) {
           if (this.findJoinedEventsId()) {
