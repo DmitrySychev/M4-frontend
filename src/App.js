@@ -5,6 +5,8 @@ import SignupForm from './components/Signup.jsx'
 import CreateEvent from './components/CreateEvent.jsx'
 import Navbar from './components/Navbar.jsx'
 import EventsContainer from './containers/EventsContainer.jsx'
+import EventShowPage from './components/EventShowPage.jsx'
+import AllEventsContainer from './containers/AllEventsContainer.jsx'
 import {  
   Switch,
   Route,
@@ -16,9 +18,10 @@ class App extends React.Component{
   state = {
     events: [],
     user: null,
-    // redirected: false,
     joinedEvents: [],
-    createdEvents: []
+    createdEvents: [],
+    eventId: '',
+    eId: ''
   }
 
 
@@ -56,8 +59,8 @@ class App extends React.Component{
   getEvents = () => {
     fetch('http://localhost:3000/events')
       .then(res => res.json())
-      .then(data => this.setState({ events: data.events, redirected: false}))
-      // .then(console.log(this.state))
+      .then(data => this.setState({ events: data.events}))
+      .catch((error) => {console.log(error)})
   }
 
   componentDidMount() {
@@ -71,6 +74,7 @@ class App extends React.Component{
       })
       .then(resp => resp.json())
       .then(data => this.setState({ user: data.user }))
+      .catch((error) => {console.log(error)})
     }  else {
       this.props.history.push("/login")
     }
@@ -81,6 +85,7 @@ class App extends React.Component{
         })
       .then(resp => resp.json())
       .then(resp => this.setState({joinedEvents: resp.joined_events, createdEvents: resp.created_events}))
+      .catch((error) => {console.log(error)})
   }
 
 
@@ -96,7 +101,8 @@ class App extends React.Component{
         body: JSON.stringify({ event })
       })
       .then(res => res.json())
-      .then(data => {this.setState({...this.state.events, data, redirected: true }, () => this.getEvents())})
+      .then(data => {this.setState({...this.state.events, data })})
+      .catch((error) => {console.log(error)})
       this.props.history.push('/');
       
   }
@@ -104,6 +110,7 @@ class App extends React.Component{
   newUserEvent=(eventId)=>{
     const userEventObj = {event_id: eventId}
     console.log("event id in newuserevent", eventId)
+    console.log(this.state.joinedEvents)
   // need to get current_user dynamically from backend in order to create the user_event
   const token = localStorage.getItem("token")
       fetch("http://localhost:3000/user_events/", { 
@@ -119,23 +126,29 @@ class App extends React.Component{
 
     }
 
-    learnMore=()=>{
-      console.log("render show page")
+    learnMore=(id)=>{
+      this.setState({ eId: id})
+    
     }
 
-    deleteUserEvent=(eventId)=>{ //not working yet
+  deleteUserEvent=(event)=>{ //not working yet
+    console.log(event)
     // need to get current_user dynamically from backend in order to delete the user_event
+    // needs the user_event id
     const token = localStorage.getItem("token")
-    fetch("http://localhost:3000/user_events/", { 
-      method: 'DELETE',
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({ eventId: eventId })
-    })
+    fetch("http://localhost:3000/user_events/" + {event})
       .then(res => res.json())
+      .then(console.log)
+    // fetch("http://localhost:3000/user_events/", { 
+    //   method: 'DELETE',
+    //   headers: {
+    //     "Authorization": `Bearer ${token}`,
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json"
+    //   },
+    //   body: JSON.stringify({ eventId: eventId })
+    // })
+    //   .then(res => res.json())
     }
   
   deleteEvent=(eventObjId)=>{
@@ -145,14 +158,12 @@ class App extends React.Component{
   }
 
   render() {
-    // const { redirected } = this.state
-    // if (redirected) {
-    //   return <Route path="/" render={() => <Home events={this.state.events} deleteEvent={this.deleteEvent} joinEvent={this.newUserEvent}/>}/>
-    // }
     return (
-        <>
+      <>
         <Navbar data={this.props.history}/>
         <Switch>
+         
+
           <Route path="/login" render={() => <LoginForm submitHandler={this.loginHandler}/>} />
           <Route path="/signup" render={() => <SignupForm submitHandler={this.signupHandler}/>} />
 
@@ -165,18 +176,26 @@ class App extends React.Component{
                                                 joinedEvents={this.state.joinedEvents} 
                                                 createdEvents={this.state.createdEvents} 
                                                 events={this.state.events} 
+                                                deleteUserEvent={this.deleteUserEvent}
                                                 deleteEvent={this.deleteEvent}
                                                 learnMore={this.learnMore} 
-                                                joinEvent={this.newUserEvent}/>}/>   
+                                                joinEvent={this.newUserEvent}/>}/> 
+
+          {/* I think because it's all one container it may not be trigger correct refreshing of the page. Tested and verified  */}
+          <Route path='/events/:id' render={() => <EventShowPage />}  />
           
-          <Route path="/events" render={() => <EventsContainer 
+          <Route path="/events" render={() => <AllEventsContainer 
                                                 user={this.state.user} 
                                                 joinedEvents={this.state.joinedEvents} 
                                                 createdEvents={this.state.createdEvents} 
                                                 events={this.state.events} 
+                                                deleteUserEvent={this.deleteUserEvent}
                                                 deleteEvent={this.deleteEvent} 
                                                 learnMore={this.learnMore} 
                                                 joinEvent={this.newUserEvent}/>}/> 
+
+          
+
           <Route path="/" render={() => <EventsContainer 
                                                 user={this.state.user} 
                                                 joinedEvents={this.state.joinedEvents} 

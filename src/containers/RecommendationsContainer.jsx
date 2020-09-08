@@ -1,5 +1,5 @@
 import React from 'react';
-import EventCard from '../components/EventCard'
+// import EventCard from '../components/EventCard'
 
 class RecommendationsContainer extends React.Component {
 

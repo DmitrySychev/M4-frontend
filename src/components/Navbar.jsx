@@ -4,7 +4,7 @@ import {
   Dropdown,
   Menu,
 } from 'semantic-ui-react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -27,18 +27,29 @@ render() {
 
   <Menu fixed='top' inverted >
   <Container>
-    <Dropdown item simple text='Pandemic Events' as={Link} to='/' header left floated>
+    <Dropdown item simple text='Pandemic Events' as={Link} to='/' left >
       <Dropdown.Menu>
-        <Dropdown.Item as={Link} to='/createevent'>Host an Event</Dropdown.Item>
-        <Dropdown.Item as={Link} to='/me/events'>My Events</Dropdown.Item>
+
+        {this.state.user === undefined ? 
+        <>
+        <Dropdown.Item text='My Events' as={Link} to='/login' />
+        <Dropdown.Item text='Host an Event' as={Link} to='/login' />
+        </>
+        :
+        <>
+        <Dropdown.Item text='My Events' as={Link} to='/me/events' />
+        <Dropdown.Item text='Host an Event' as={Link} to='/createevent' />
+        </>
+      }
+  
         <Dropdown.Divider />
         <Dropdown.Header>Header Item</Dropdown.Header>
-        <Dropdown.Item>Events Home</Dropdown.Item>
+        <Dropdown.Item text='Events Home' as={Link} to="/events" />
       </Dropdown.Menu>
     </Dropdown>
-    <div class='right item'>
+    <div className='right item'>
     <Menu.Item as={Link} to='/signup' >Signup</Menu.Item>
-
+    
   { 
   
     this.state.user === undefined ?

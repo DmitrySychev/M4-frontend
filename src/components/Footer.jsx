@@ -14,16 +14,16 @@ import {
      
       <Image centered size='mini' src='' />
       <List horizontal inverted divided link size='small'>
-        <List.Item as='a' href='#'>
+        <List.Item as='' href=''>
           Site Map
         </List.Item>
-        <List.Item as='a' href='#'>
+        <List.Item as='' href=''>
           Contact Us
         </List.Item>
-        <List.Item as='a' href='#'>
+        <List.Item as='' href=''>
           Terms and Conditions
         </List.Item>
-        <List.Item as='a' href='#'>
+        <List.Item as='' href=''>
           Privacy Policy
         </List.Item>
       </List>
