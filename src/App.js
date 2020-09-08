@@ -21,7 +21,9 @@ class App extends React.Component{
     joinedEvents: [],
     createdEvents: [],
     eventId: '',
-    eId: ''
+    eId: '',
+    userEvents: [],
+    userId: null
   }
 
 
@@ -131,40 +133,31 @@ class App extends React.Component{
     
     }
 
-  deleteUserEvent=(eventObj)=>{ //not working yet
-    let userEventsData = {}
-    const eventId = eventObj.id
-    const token = localStorage.getItem("token")
+findUserEvent=(eventId)=>{
+  const filteredByEventId = this.state.userEvents.filter(userEvent => userEvent.event_id === eventId)
+  const userEventToDelete = filteredByEventId.filter(userEvent => userEvent.user_id === this.state.userId )
+  const idOfUserEventIdToDelete =  userEventToDelete[0].id
+  const newJoinedEventsArray = this.state.joinedEvents.filter(event=> event.id !== idOfUserEventIdToDelete)
+  const newUserEventsArray = this.state.userEvents.filter(event=> event.id !== idOfUserEventIdToDelete)
+  
+  
+  fetch("http://localhost:3000/user_events/"+idOfUserEventIdToDelete, {method: "DELETE"})
+  .then(this.setState({joinedEvents: newJoinedEventsArray, userEvents: newUserEventsArray}, ()=> this.componentDidMount()))
+  
+}
+
+  deleteUserEvent=(eventId)=>{
+    const token = localStorage.getItem("token");
 
     fetch("http://localhost:3000/user_events", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}`},
     })
     .then(resp=> resp.json())
-    .then(data => {
-      userEventsData = data
-      console.log("data", data)
-    })
-
-    console.log("user events data", userEventsData)
-    const userEvents = userEventsData.user_events
-    const userId = userEventsData.user_id
-
-    const filteredByEventId = userEvents.filter(userEvent => userEvent.event_id === eventId)
-    const userEventToDelete = filteredByEventId.filter(userEvent => userEvent.user_id === userId )
-    console.log("delete this", userEventToDelete)
-
-    // fetch("http://localhost:3000/me/event/" + eventId, { 
-    //   method: 'DELETE',
-    //   headers: {
-    //     "Authorization": `Bearer ${token}`,
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json"
-    //   },
-    // })
-    //   .then(res => res.json())
-    //   .then(console.log)
-    }
+    .then(resp => this.setState({userEvents: resp.user_events, userId: resp.user_id}, ()=> this.findUserEvent(eventId)))
+    
+  }
+  
   
   deleteEvent=(eventObjId)=>{
     const newEventsArray = this.state.events.filter(event => event.id !== eventObjId)

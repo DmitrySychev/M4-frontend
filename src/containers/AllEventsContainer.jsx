@@ -13,7 +13,9 @@ class AllEventsContainer extends React.Component {
                 key={event.id} 
                 event={event} 
                 learnMore={this.props.learnMore} 
-                joinEvent={this.props.joinEvent}/>
+                joinEvent={this.props.joinEvent}
+                delete={this.props.delete}
+                />
         })
     }
 

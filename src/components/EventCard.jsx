@@ -7,20 +7,26 @@ import EventShowPage from '../components/EventShowPage.jsx'
 class EventCard extends React.Component{
 
 
-             //* first level of if function: if there is not a user object, render buttons but they reroute to signin 
-            //* second level if: if this.props.created === true, display the delete event button
-            //* second level if: if this.props.joined === false, display joinEvent button, else display deleteUserEvent button ("no longer attending")
+callDeleteUserEvent=(eventId)=>{
+  if(this.props.deleteUserEvent){
+    this.props.deleteUserEvent(eventId)
+  }else{
+    console.log("no props delete user event")
+  }
+}
+
   joinedAndNotCreated=()=>{
     // console.log(this.props)
     return this.props.joined === 'true' && this.props.created === 'false' ?
-              
-    <Button size="small" onClick={()=> this.props.deleteUserEvent(this.props.event.id)}>No longer attending</Button>
+            
+    <Button size="small" onClick={()=> this.callDeleteUserEvent(this.props.event.id)}>No longer attending</Button>
                                                       // looking for the wrong id, need user_event id, not event id
     :     
     <Button size="small" onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</Button>
   }
 
   render(){
+    console.log("props in event card", this.props)
   
     return (
      
