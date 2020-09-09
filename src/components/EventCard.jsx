@@ -65,7 +65,6 @@ callDeleteUserEvent=(eventId)=>{
 
 
   handleOpen = () => {
-    console.log(this.state)
     this.setState({ isOpen: true })
 
     this.timeout = setTimeout(() => {
@@ -80,7 +79,6 @@ callDeleteUserEvent=(eventId)=>{
 
 
   render() {
-    
     return (
      
       <>

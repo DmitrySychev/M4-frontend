@@ -215,7 +215,14 @@ findUserEvent=(eventId)=>{
           <Route path='/events/:id' render={() => 
                                                 <div>
                                                 <Navbar user={this.state.user} />
-                                                <EventShowPage data={this.state.events}/>
+                                                <EventShowPage 
+                                                  data={this.state.events}
+                                                  user={this.state.user} 
+                                                  joinEvent={this.newUserEvent}
+                                                  joinedEvents={this.state.joinedEvents}
+                                                  deleteUserEvent={this.deleteUserEvent}
+                                                />
+                                                
                                                 </div>}  />
           
           <Route path="/events"   render={() => 
