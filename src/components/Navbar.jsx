@@ -44,7 +44,6 @@ render() {
       }
   
         <Dropdown.Divider />
-        <Dropdown.Header>Header Item</Dropdown.Header>
         <Dropdown.Item text='Events Home' as={Link} to="/events" />
       </Dropdown.Menu>
     </Dropdown>
