@@ -15,7 +15,6 @@ import {
 
 class App extends React.Component{
 
-//testing!!
 
   state = {
     events: [],
@@ -40,8 +39,6 @@ class App extends React.Component{
     })
     .then(res => res.json())
     .then(data => {
-      // console.log("token:", data.jwt)
-      // console.log("data.user", data.user)
       localStorage.setItem("token", data.jwt)
       this.setState({ user: data.user }, () => {this.componentDidMount()})
       
@@ -60,8 +57,6 @@ class App extends React.Component{
     })
       .then(res => res.json())
       .then(data => {
-        // console.log("token:", data.jwt)
-        // console.log("data.user", data.user)
         localStorage.setItem("token", data.jwt)
         this.setState({ user: data.user }, () => {this.componentDidMount()})
         
@@ -122,9 +117,6 @@ class App extends React.Component{
 
   newUserEvent=(eventId)=>{
     const userEventObj = {event_id: eventId}
-    // console.log("event id in newuserevent", eventId)
-    // console.log(this.state.joinedEvents)
-  // need to get current_user dynamically from backend in order to create the user_event
   const token = localStorage.getItem("token")
       fetch("http://localhost:3000/user_events/", { 
         method: 'POST',

@@ -10,15 +10,9 @@ import Footer from '../components/Footer.jsx'
 
 class EventsContainer extends React.Component {
 
-// it is the responsibility of the EventsContainer to render the event cards with the right props, which determine whether certain buttons are rendered
-
-
-
 
     renderJoinedEvents=()=>{
-        // console.log("joined events", this.props.joinedEvents)
-        // console.log("created events", this.props.createdEvents)
-        // console.log("all events", this.props.events)
+
         if (this.props.joinedEvents) {
                 return ( this.props.joinedEvents.map(event => {
                     return <EventCard 
@@ -78,8 +72,10 @@ class EventsContainer extends React.Component {
 
                 <Segment className="ui grid container">
                 <RecommendationsContainer 
+                    user = {this.props.user}
                     events={this.props.events} 
                     joinedEvents={this.props.joinedEvents} 
+                    joinEvent={this.props.joinEvent}
                     createdEvents={this.props.createdEvents}/>
                 </Segment>
 

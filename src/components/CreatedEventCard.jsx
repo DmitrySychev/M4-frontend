@@ -9,7 +9,6 @@ class CreatedEventCard extends React.Component{
 
 
   render(){
-    // console.log(this.props.createdEvents)
     return (
      
       <>

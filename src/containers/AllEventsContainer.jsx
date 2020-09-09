@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import EventCard from '../components/EventCard'
-import { Segment } from 'semantic-ui-react'
-import RecommendationsContainer from './RecommendationsContainer.jsx';
+import { Segment, Container } from 'semantic-ui-react'
+// import RecommendationsContainer from './RecommendationsContainer.jsx';
 import Footer from '../components/Footer.jsx'
 
 
@@ -30,7 +30,7 @@ class AllEventsContainer extends React.Component {
         return (
         <>
             
-
+            <Container inverted='true' style={{ marginTop: '7em' }}>
             <Segment className="ui grid container" attached="bottom"> 
                 <br></br>
                 <h1>All Events </h1>
@@ -40,7 +40,7 @@ class AllEventsContainer extends React.Component {
             </Segment>
        
 
-
+            </Container>
             <Footer />
 
             </>

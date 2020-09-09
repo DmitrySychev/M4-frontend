@@ -19,26 +19,23 @@ class EventShowPage extends React.Component{
     fetch("http://localhost:3000/events/"+eventId)
     .then(resp => resp.json())
     .then(resp => {
-      // console.log("found event from DB", resp)
       this.setState({eventCreator: resp.created_by.username, attendees: resp.attendees}, ()=>console.log(this.state))
     })
   }
 
-  mapAtendees=()=>{
-    if (this.state.attendees) {
-      
-     return this.state.attendees.map(atendee => <p>* {atendee.username}</p>)
-        
-    } else {
-
-     return  "There's no one attending this event yet!"
+  mapAttendees=()=>{
+    if (this.state.attendees && this.state.attendees.length > 0) {
+     return (
+        <p>Here's everyone that's attending this event: {this.state.attendees.map(attendee => <p> {attendee.username}</p>)}</p> 
+        )     
+    } else{
+      return  <p>There's no one attending this event yet besides the host.</p>
     }
-
-    
   }
+  
 
   render() {
-    // console.log(this.state.attendees.map(atendee => atendee.username))
+    console.log("this.state.attendees length", this.state.attendees)
     return (
 
       this.state.event ? 
@@ -67,9 +64,10 @@ class EventShowPage extends React.Component{
             </Segment>
 
             <Segment size='large'>
-                <p>Here's everyone that's attendting this event: </p>
+                <p>Event host: {this.state.eventCreator}.</p>
+ 
                 
-                {this.mapAtendees()}
+                {this.mapAttendees()}
             </Segment>
 
         </Container>
