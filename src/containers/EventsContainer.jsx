@@ -55,19 +55,21 @@ class EventsContainer extends React.Component {
 
             <Container inverted='true' style={{ marginTop: '7em' }}>
 
-
+                <Segment>
                 <h1>Events I'm Attending</h1>  
                     <Segment className="ui grid container">
                     {this.renderJoinedEvents()}
                     </Segment>    
+                </Segment>
           
                 
             
-                
+                <Segment>
                 <h1>Events I'm Hosting</h1>
                     <Segment className="ui grid container">
                         { this.renderCreatedEvents() }            
                     </Segment>
+                </Segment>
                
 
                 <Segment className="ui grid container">

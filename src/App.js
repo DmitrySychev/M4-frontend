@@ -117,7 +117,7 @@ class App extends React.Component{
 
   newUserEvent=(eventId)=>{
     const userEventObj = {event_id: eventId}
-  const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token")
       fetch("http://localhost:3000/user_events/", { 
         method: 'POST',
         headers: {

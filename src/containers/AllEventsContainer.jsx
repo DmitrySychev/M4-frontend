@@ -31,7 +31,7 @@ class AllEventsContainer extends React.Component {
         <>
             
             <Container inverted='true' style={{ marginTop: '7em' }}>
-            <Segment className="ui grid container" attached="bottom"> 
+            <Segment className="ui grid container" attached="bottom" > 
                 <br></br>
                 <h1>All Events </h1>
                     <Segment className="ui grid container">
