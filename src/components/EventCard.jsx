@@ -60,6 +60,8 @@ callDeleteUserEvent=(eventId)=>{
           <Card.Content>
             <Card.Header>{this.props.event.title}</Card.Header>
             <div id="date">Date: {this.props.event.date}</div>
+            <div id="category">Occasion: {this.props.event.category}</div>
+
             <Card.Description >
               {this.props.event.description}
             </Card.Description>
