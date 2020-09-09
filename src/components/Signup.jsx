@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar.jsx'
 import Footer from './Footer.jsx'
-import { Button, Form, Grid, Header, Image } from 'semantic-ui-react'
+import { Button, Form, Grid, Header } from 'semantic-ui-react'
 
 class SignupForm extends React.Component {
 
@@ -27,7 +27,7 @@ class SignupForm extends React.Component {
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
               <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as='h2' color='teal' textAlign='center'>
-                  <Image src='/logo.png' /> SIGNUP FOR A NEW ACCOUNT
+                  SIGNUP
                 </Header>
                 <Form size='large' onSubmit={this.submitHandler}>
               <Form.Input 

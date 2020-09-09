@@ -54,11 +54,10 @@ class EventsContainer extends React.Component {
 
 
     render() { 
-        console.log(this.props)
         return (
                 <>
 
-            <Container inverted style={{ marginTop: '7em' }}>
+            <Container inverted='true' style={{ marginTop: '7em' }}>
 
                 
                 <h1>Events I'm Attending</h1>  

@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar.jsx'
 import Footer from './Footer.jsx'
 import { Link } from 'react-router-dom';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header } from 'semantic-ui-react'
 
 class LoginForm extends React.Component {
 
@@ -29,7 +29,7 @@ render() {
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='teal' textAlign='center'>
-        <Image src='/logo.png' /> Log-in to your account
+        LOGIN
       </Header>
       <Form size='large' onSubmit={this.submitHandler}>
               <Form.Input 
@@ -57,12 +57,11 @@ render() {
                     Login
                   </Button>
               </Form>
-
-              <Segment >
-                <Message as={Link} to='/signup'>
+                <hr></hr>
+                <Button fluid size='large' color='grey' as={Link} to='/signup'>
                     New to us? Sign up!
-                </Message>
-              </Segment>
+                </Button>
+             
     </Grid.Column>
   </Grid>
 <Footer />

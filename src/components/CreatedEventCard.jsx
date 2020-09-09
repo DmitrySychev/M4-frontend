@@ -9,7 +9,6 @@ class CreatedEventCard extends React.Component{
 
 
   render(){
-    console.log(this.props.createdEvents)
     return (
      
       <>
@@ -24,7 +23,7 @@ class CreatedEventCard extends React.Component{
             </Card.Description>
  
             <Container >
-              <Segment vertical='true'>
+              <Segment vertical={true}>
               <Button size='small' onClick={()=> this.props.deleteEvent(this.props.event.id)} >Delete Event</Button>
               <Button size='small' as={Link} to={'/events/' + this.props.event.id}   >Learn More</Button>
 

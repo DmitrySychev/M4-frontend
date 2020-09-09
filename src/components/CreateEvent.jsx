@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './Navbar.jsx';
 import Footer from './Footer.jsx';
 import { Redirect } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Dropdown, Segment } from 'semantic-ui-react';

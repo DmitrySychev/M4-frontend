@@ -33,12 +33,13 @@ class AllEventsContainer extends React.Component {
 
             <Segment className="ui grid container" attached="bottom"> 
                 <br></br>
-                <h1>All Events - Visible if signed in or not - path /events</h1>
+                <h1>All Events </h1>
                     <Segment className="ui grid container">
                         {this.renderAllEvents()} 
                     </Segment>      
             </Segment>
        
+
 
             <Footer />
 
