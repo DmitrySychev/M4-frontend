@@ -27,7 +27,7 @@ class EventShowPage extends React.Component{
   mapAtendees=()=>{
     if (this.state.attendees) {
       
-     return this.state.attendees.map(atendee => atendee.username.split(''))
+     return this.state.attendees.map(atendee => <p>* {atendee.username}</p>)
         
     } else {
 
@@ -67,7 +67,9 @@ class EventShowPage extends React.Component{
             </Segment>
 
             <Segment size='large'>
-                Here's everyone that's attendting this event: {this.mapAtendees()}
+                <p>Here's everyone that's attendting this event: </p>
+                
+                {this.mapAtendees()}
             </Segment>
 
         </Container>

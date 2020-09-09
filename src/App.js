@@ -38,8 +38,15 @@ class App extends React.Component{
       },
       body: JSON.stringify({ user: userObj })
     })
-      .then(res => res.json())
-      .then(console.log)
+    .then(res => res.json())
+    .then(data => {
+      // console.log("token:", data.jwt)
+      // console.log("data.user", data.user)
+      localStorage.setItem("token", data.jwt)
+      this.setState({ user: data.user }, () => {this.componentDidMount()})
+      
+    })
+    this.props.history.push("/")
   }
 
   loginHandler = (userInfo) => {

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-import './CalendarLG.css';
+import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import moment from "moment";
-import '../stylesheets/react-big-calendar.css';
-import '../stylesheets/styles.css';
+
 
 
 const localizer = momentLocalizer(moment);

@@ -28,7 +28,7 @@ render() {
 
   <Menu fixed='top' inverted >
   <Container>
-    <Dropdown item simple text='Pandemic Events' as={Link} to='/' left >
+    <Dropdown item simple text='Pandemic Events' as={Link} to='/' left='true' >
       <Dropdown.Menu>
 
         {this.props.user === undefined || this.props.user === null ? 
@@ -44,7 +44,6 @@ render() {
       }
   
         <Dropdown.Divider />
-        <Dropdown.Header>Header Item</Dropdown.Header>
         <Dropdown.Item text='Events Home' as={Link} to="/events" />
       </Dropdown.Menu>
     </Dropdown>
