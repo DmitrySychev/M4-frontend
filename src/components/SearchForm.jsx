@@ -1,7 +1,5 @@
 import React from 'react';
-import Footer from './Footer.jsx';
-import { Redirect } from 'react-router-dom';
-import { Input, Form, Grid, Header, Image, Dropdown, Segment } from 'semantic-ui-react';
+import { Input, Dropdown, Segment, Button, Label } from 'semantic-ui-react';
 
 
 const options = [
@@ -16,31 +14,36 @@ const options = [
 class SearchForm extends React.Component{
 
 
-    dateHandler=(e)=>{
-        // console.log(e.target.value)
-        this.props.dateHandler(e)
-    }
+    // dateHandler=(e)=>{
+    //     console.log(this.props)
+    //     this.props.dateHandler(e)
+    // }
 
     render() {
-
         console.log("props in search form", this.props)
         return (
-            <>
-            <Dropdown 
-            clearable 
-            options={options} 
-            selection
-            value={this.props.searchCategory}
-            text=''
-            onChange={(e, data) => this.props.searchHandler(e, data)}
-            />
+            <Segment attached>
+                <Dropdown 
+                 
+                options={options} 
+                selection
+                value={this.props.searchCategory}
+                text={
+                    this.props.searchCategory === null ? 
+                    'Category'
+                    :
+                    this.props.searchCategory
+                }
+                onChange={(e, data) => this.props.searchHandler(e, data)}
+                />
+    
+                <Label for="start" size='big' >Start Date:</Label>
+                    
+                <Input onChange={(e) => this.props.dateHandler(e)} type="date"  
+                min="2020-09-01" max="2020-09-31" input={this.props.searchDate } ></Input>
+                <Button size='large' onClick={this.props.resetFilteredEventsArray}>Reset Search</Button>
 
-            <label for="start">Start date:</label>
-
-            <input onChange={this.dateHandler} type="date" id="start" name="trip-start"
-            min="2020-09-10" max="2020-09-20" value={this.props.searchDate}></input>
-            <button onClick={this.props.resetFilteredEventsArray}>Reset Form</button>
-            </>
+            </Segment>
 
         )
     }

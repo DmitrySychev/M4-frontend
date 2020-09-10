@@ -49,6 +49,7 @@ class AllEventsContainer extends React.Component {
     }
 
     render() {
+        // console.log(this.props)
         return (
         <>
             
@@ -59,20 +60,23 @@ class AllEventsContainer extends React.Component {
                <span>
                 <h1>All Events </h1>
                </span>
-                <span style={{}}>
-                  <SearchForm 
-                  right='true' 
-                  searchHandler={this.props.searchHandler}
-                  dateHandler={this.props.dateHandler}
-                  resetFilteredEventsArray={this.resetFilteredEventsArray}
-                  searchDate={this.props.searchDate}
-                  searchCategory={this.props.searchCategory}
-                  />
-                </span>
+              
+           
                     <Segment className="ui grid container">
+                        <SearchForm 
+                        right='true' 
+                        searchHandler={this.props.searchHandler}
+                        dateHandler={this.props.dateHandler}
+                        resetFilteredEventsArray={this.resetFilteredEventsArray}
+                        searchDate={this.props.searchDate}
+                        searchCategory={this.props.searchCategory}
+                        />
+                        <Segment className="ui grid container">
                         {
                         this.renderAllEvents()
                         } 
+
+                        </Segment>
                     </Segment>      
             </Segment>
        

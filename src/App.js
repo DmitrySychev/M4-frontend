@@ -187,7 +187,7 @@ findUserEvent=(eventId)=>{
 
 resetFilteredEventsArray=()=>{
   console.log("reset filtered events array")
-  this.setState({filteredEvents: this.state.events})
+  this.setState({filteredEvents: this.state.events, eventTypeSearchTerm: null, dateSearchTerm: null }, ()=>{this.componentDidMount()})
 }
 
   render() {
@@ -284,6 +284,7 @@ resetFilteredEventsArray=()=>{
                                                   joinEvent={this.newUserEvent}
                                                   searchHandler={this.searchHandler}
                                                   dateHandler={this.dateHandler}
+                                                  deleteUserEvent={this.deleteUserEvent}
                                                   filteredEvents={this.state.filteredEvents}
                                                   resetFilteredEventsArray={this.resetFilteredEventsArray}
                                                   searchDate={this.state.dateSearchTerm}
