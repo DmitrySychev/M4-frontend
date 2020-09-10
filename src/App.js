@@ -170,6 +170,7 @@ findUserEvent=(eventId)=>{
   }
 
   render() {
+    console.log(this.state.events)
     return (
       <>
         

@@ -1,7 +1,6 @@
 import React, { useReducer } from 'react';
 import EventCard from '../components/EventCard'
 import { Segment, Container } from 'semantic-ui-react'
-// import RecommendationsContainer from './RecommendationsContainer.jsx';
 import Footer from '../components/Footer.jsx'
 
 

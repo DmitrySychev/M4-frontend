@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image, Button, Container, Segment, Popup, Rating, Label } from 'semantic-ui-react'
+import { Card, Image, Button, Container, Segment, Popup, Label } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 const timeoutLength = 2500
@@ -112,7 +112,7 @@ callDeleteUserEvent=(eventId)=>{
       <Popup.Header>Attending</Popup.Header>
           <Popup.Content>
  
-            <Label square color='yellow' >
+            <Label square color='teal' >
             {this.state.attendees.length}
             </Label> 
 
