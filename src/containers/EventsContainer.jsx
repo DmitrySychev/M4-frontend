@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import EventCard from '../components/EventCard'
 import CreatedEventCard from '../components/CreatedEventCard'
-import { Container, Segment, Card } from 'semantic-ui-react'
+import { Container, Segment } from 'semantic-ui-react'
 import RecommendationsContainer from './RecommendationsContainer.jsx';
 import Footer from '../components/Footer.jsx'
 
@@ -72,14 +72,14 @@ class EventsContainer extends React.Component {
                 </Segment>
                
 
-                <Segment className="ui grid container">
+                
                 <RecommendationsContainer 
                     user = {this.props.user}
                     events={this.props.events} 
                     joinedEvents={this.props.joinedEvents} 
                     joinEvent={this.props.joinEvent}
                     createdEvents={this.props.createdEvents}/>
-                </Segment>
+           
 
             </Container>
 

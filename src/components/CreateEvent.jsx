@@ -15,32 +15,32 @@ const thumbs = [
     {
       key: 'zoomparty',
       text: 'Zoom Party',
-      value: 'zoomparty',
-      image: { src: 'https://ca-times.brightspotcdn.com/dims4/default/9321c96/2147483647/strip/true/crop/2400x1350+0+125/resize/1200x675!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F91%2F37%2Ff1c988db40109234e505b4891a05%2Fla-zoom-party-etiquette.jpg' },
+      value: 'https://ca-times.brightspotcdn.com/dims4/default/9321c96/2147483647/strip/true/crop/2400x1350+0+125/resize/1200x675!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F91%2F37%2Ff1c988db40109234e505b4891a05%2Fla-zoom-party-etiquette.jpg',
+      image: { avatar: false, src: 'https://ca-times.brightspotcdn.com/dims4/default/9321c96/2147483647/strip/true/crop/2400x1350+0+125/resize/1200x675!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F91%2F37%2Ff1c988db40109234e505b4891a05%2Fla-zoom-party-etiquette.jpg' },
     },
     {
       key: 'happyhour',
       text: 'Happy Hour',
-      value: 'happyhour',
-      image: { avatar: false, src: 'https://i.https://res.cloudinary.com/simpleview/image/upload/v1562609933/clients/palmsprings/HappyHour_shutterstock_9516081f-6dc6-4844-a64a-e8834ecf2831.jpg.com/236x/e9/9b/06/e99b06894c2ed43c0946092979b717a2--kawaii-marshmallow-cute-pics.jpg' },
+      value: 'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_600,q_75,w_1440/v1/clients/palmsprings/HappyHour_shutterstock_9516081f-6dc6-4844-a64a-e8834ecf2831.jpg',
+      image: { avatar: false, src: 'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_600,q_75,w_1440/v1/clients/palmsprings/HappyHour_shutterstock_9516081f-6dc6-4844-a64a-e8834ecf2831.jpg' },
     },
     {
       key: 'gamenight',
       text: 'Game Night',
-      value: 'gamenight',
-      image: { avatar: false, src: 'https://i.https://mk0snacknationnm0gwv.kinstacdn.com/wp-content/uploads/2020/08/virtual_game_night.png.com/236x/e9/9b/06/e99b06894c2ed43c0946092979b717a2--kawaii-marshmallow-cute-pics.jpg' },
+      value: 'https://mk0snacknationnm0gwv.kinstacdn.com/wp-content/uploads/2020/08/virtual_game_night.png',
+      image: { avatar: false, src: 'https://mk0snacknationnm0gwv.kinstacdn.com/wp-content/uploads/2020/08/virtual_game_night.png' },
     },
     {
       key: 'politicaldiscussion',
       text: 'Political Discussion',
-      value: 'politicaldiscussion',
-      image: { avatar: false, src: 'https://ourpolitics.net/wp-content/uploads/2018/02/pov620-twitter.jpg' },
+      value: 'https://ourpolitics.net/wp-content/uploads/2018/02/pov620-twitter.jpg',
+      image: 'https://ourpolitics.net/wp-content/uploads/2018/02/pov620-twitter.jpg',
     },
     {
       key: 'airbnb',
       text: 'AirBnb Experience',
-      value: 'airbnb',
-      image: { avatar: false, src: 'https://www.nsbuzz.ca/wp-content/uploads/2020/06/airbnbexperiences.jpg' },
+      value: 'https://www.nsbuzz.ca/wp-content/uploads/2020/06/airbnbexperiences.jpg',
+      image: 'https://www.nsbuzz.ca/wp-content/uploads/2020/06/airbnbexperiences.jpg',
     }
   ]
 
@@ -56,12 +56,12 @@ class CreateEvent extends React.Component {
         thumbnail: ''
     }
 
-    changeHandler = (e, {name}) => {
+    changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    changeHandlerDropdown = (e, {name}) => {
-        this.setState({ [name]: e.target.innerText })
+    changeHandlerDropdown = (e, data ) => {
+        this.setState({ [data.name]: data.value })
     }
 
     submitHandler = (e) => {
@@ -130,7 +130,7 @@ class CreateEvent extends React.Component {
                         selection 
                         options={thumbs} 
                         name='thumbnail'
-                        value={this.state.thumbnail}
+                        // value={this.state.thumbnail}
                         onChange={this.changeHandlerDropdown} 
                     />
                 </Segment>

@@ -70,6 +70,8 @@ class RecommendationsContainer extends React.Component {
         return (
             <div>
 
+                    <Segment>
+
                     <h1>Recommended events</h1>  
                     <Segment className="ui grid container">
                     {this.state.topThreeEvents && this.state.topThreeEvents.top_three_events.length !== 0 ?
@@ -77,6 +79,7 @@ class RecommendationsContainer extends React.Component {
                     :
                     <p>To get recommendations, please RSVP yes to an event!</p>}
                     </Segment>    
+                    </Segment>
             
             </div>
         )

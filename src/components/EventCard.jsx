@@ -85,7 +85,12 @@ callDeleteUserEvent=(eventId)=>{
        <Popup
         trigger={
         <Card className="four wide column " style={{ margin: '1em' }}  id={this.props.event.id} >
-          <Image src='https://ca-times.brightspotcdn.com/dims4/default/90f23c8/2147483647/strip/true/crop/2400x1600+0+0/resize/1486x991!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F91%2F37%2Ff1c988db40109234e505b4891a05%2Fla-zoom-party-etiquette.jpg' />
+          <Image src={
+            this.props.event.thumbnail ?
+            this.props.event.thumbnail
+            :
+            'https://ca-times.brightspotcdn.com/dims4/default/9321c96/2147483647/strip/true/crop/2400x1350+0+125/resize/1200x675!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F91%2F37%2Ff1c988db40109234e505b4891a05%2Fla-zoom-party-etiquette.jpg'
+            } />
           <Card.Content >
             <Card.Header>{this.props.event.title}</Card.Header>
             <div id="date">Date: {this.props.event.date}</div>
