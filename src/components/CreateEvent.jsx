@@ -4,41 +4,41 @@ import { Redirect } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Dropdown, Segment } from 'semantic-ui-react';
 
 const category = [
-    { key: 'zoomparty', text: 'Zoom Party', value: 'zoomparty' },
-    { key: 'happyhour', text: 'Happy Hour', value: 'happyhour' },
-    { key: 'gamenight', text: 'Game Night', value: 'gamenight' },
-    { key: 'politicaldiscussion', text: 'Political Discussion', value: 'politicaldiscussion' },
-    { key: 'airbnb', text: 'AirBnb Experience', value: 'airbnb' },
+    { key: 'zoomparty', text: 'Zoom Party', value: 'Zoom Party' },
+    { key: 'happyhour', text: 'Happy Hour', value: 'Happy Hour' },
+    { key: 'gamenight', text: 'Game Night', value: 'Game Night' },
+    { key: 'politicaldiscussion', text: 'Political Discussion', value: 'Political Discussion' },
+    { key: 'airbnb', text: 'AirBnb Experience', value: 'AirBnb Experience' },
 ]
 
 const thumbs = [
     {
-      key: 'zoomparty',
+      key: 'Zoom Party',
       text: 'Zoom Party',
       value: 'https://ca-times.brightspotcdn.com/dims4/default/9321c96/2147483647/strip/true/crop/2400x1350+0+125/resize/1200x675!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F91%2F37%2Ff1c988db40109234e505b4891a05%2Fla-zoom-party-etiquette.jpg',
       image: { avatar: false, src: 'https://ca-times.brightspotcdn.com/dims4/default/9321c96/2147483647/strip/true/crop/2400x1350+0+125/resize/1200x675!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F91%2F37%2Ff1c988db40109234e505b4891a05%2Fla-zoom-party-etiquette.jpg' },
     },
     {
-      key: 'happyhour',
+      key: 'Happy Hour',
       text: 'Happy Hour',
       value: 'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_600,q_75,w_1440/v1/clients/palmsprings/HappyHour_shutterstock_9516081f-6dc6-4844-a64a-e8834ecf2831.jpg',
       image: { avatar: false, src: 'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_600,q_75,w_1440/v1/clients/palmsprings/HappyHour_shutterstock_9516081f-6dc6-4844-a64a-e8834ecf2831.jpg' },
     },
     {
-      key: 'gamenight',
+      key: 'Game Night',
       text: 'Game Night',
       value: 'https://mk0snacknationnm0gwv.kinstacdn.com/wp-content/uploads/2020/08/virtual_game_night.png',
       image: { avatar: false, src: 'https://mk0snacknationnm0gwv.kinstacdn.com/wp-content/uploads/2020/08/virtual_game_night.png' },
     },
     {
-      key: 'politicaldiscussion',
+      key: 'Political Discussion',
       text: 'Political Discussion',
       value: 'https://ourpolitics.net/wp-content/uploads/2018/02/pov620-twitter.jpg',
       image: 'https://ourpolitics.net/wp-content/uploads/2018/02/pov620-twitter.jpg',
     },
     {
-      key: 'airbnb',
-      text: 'AirBnb Experience',
+      key: 'AirBnB Experience',
+      text: 'AirBnB Experience',
       value: 'https://www.nsbuzz.ca/wp-content/uploads/2020/06/airbnbexperiences.jpg',
       image: 'https://www.nsbuzz.ca/wp-content/uploads/2020/06/airbnbexperiences.jpg',
     }

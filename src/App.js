@@ -21,10 +21,12 @@ class App extends React.Component{
     user: null,
     joinedEvents: [],
     createdEvents: [],
+    filteredEvents: [],
     eventId: '',
     eId: '',
     userEvents: [],
-    userId: null
+    userId: null,
+    eventTypeSearchTerm: ''
   }
 
 
@@ -169,8 +171,12 @@ findUserEvent=(eventId)=>{
       .then(this.setState({ events: newEventsArray}, () => {this.componentDidMount()}))
   }
 
+  searchHandler = (e, searchTerm) => {
+    const filteredEvents = this.state.events.filter(event => event.category.toString() == searchTerm.value.toString())
+    this.setState({ filteredEvents: filteredEvents})
+  }
+
   render() {
-    console.log(this.state.events)
     return (
       <>
         
@@ -237,7 +243,11 @@ findUserEvent=(eventId)=>{
                                                   deleteUserEvent={this.deleteUserEvent}
                                                   deleteEvent={this.deleteEvent} 
                                                   learnMore={this.learnMore} 
-                                                  joinEvent={this.newUserEvent}/>
+                                                  joinEvent={this.newUserEvent}
+                                                  searchHandler={this.searchHandler}
+                                                  filteredEvents={this.state.filteredEvents}
+                                                  />
+                                                  
                                                 </div>}
                                                 /> 
 
@@ -253,7 +263,11 @@ findUserEvent=(eventId)=>{
                                                   events={this.state.events} 
                                                   deleteEvent={this.deleteEvent} 
                                                   learnMore={this.learnMore} 
-                                                  joinEvent={this.newUserEvent}/>
+                                                  joinEvent={this.newUserEvent}
+                                                  searchHandler={this.searchHandler}
+                                                  filteredEvents={this.state.filteredEvents}
+                                                  />
+                                                  
                                                 </div> }
                                                 /> 
 
