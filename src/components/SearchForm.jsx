@@ -16,19 +16,32 @@ const options = [
 class SearchForm extends React.Component{
 
 
+    dateHandler=(e)=>{
+        // console.log(e.target.value)
+        this.props.dateHandler(e)
+    }
 
     render() {
 
+        console.log("props in search form", this.props)
         return (
-            
+            <>
             <Dropdown 
             clearable 
             options={options} 
             selection
+            value={this.props.searchCategory}
             text=''
             onChange={(e, data) => this.props.searchHandler(e, data)}
-            
             />
+
+            <label for="start">Start date:</label>
+
+            <input onChange={this.dateHandler} type="date" id="start" name="trip-start"
+            min="2020-09-10" max="2020-09-20" value={this.props.searchDate}></input>
+            <button onClick={this.props.resetFilteredEventsArray}>Reset Form</button>
+            </>
+
         )
     }
 }

@@ -26,7 +26,8 @@ class App extends React.Component{
     eId: '',
     userEvents: [],
     userId: null,
-    eventTypeSearchTerm: ''
+    eventTypeSearchTerm: null,
+    dateSearchTerm: null
   }
 
 
@@ -69,7 +70,7 @@ class App extends React.Component{
   getEvents = () => {
     fetch('http://localhost:3000/events')
       .then(res => res.json())
-      .then(data => this.setState({ events: data.events}))
+      .then(data => this.setState({ events: data.events, filteredEvents: data.events}))
       .catch((error) => {console.log(error)})
   }
 
@@ -171,10 +172,23 @@ findUserEvent=(eventId)=>{
       .then(this.setState({ events: newEventsArray}, () => {this.componentDidMount()}))
   }
 
-  searchHandler = (e, searchTerm) => {
-    const filteredEvents = this.state.events.filter(event => event.category.toString() == searchTerm.value.toString())
-    this.setState({ filteredEvents: filteredEvents})
+  searchHandler = (e, searchTermEvent) => {
+    const searchTerm = searchTermEvent.value
+    const filteredByCategory = this.state.events.filter(event => event.category.toString() == searchTerm.toString())
+    this.setState({ filteredEvents: filteredByCategory, eventTypeSearchTerm: searchTerm}, ()=>console.log(this.state.eventTypeSearchTerm))
   }
+
+  dateHandler=(event)=>{
+    console.log("date in app", event.target.value)
+    const date = event.target.value
+    const filteredByDate = this.state.filteredEvents.filter(event => event.date === date)
+    this.setState({filteredEvents: filteredByDate, dateSearchTerm: date}, console.log("filtered by date", this.state.filteredEvents))
+}
+
+resetFilteredEventsArray=()=>{
+  console.log("reset filtered events array")
+  this.setState({filteredEvents: this.state.events})
+}
 
   render() {
     return (
@@ -246,6 +260,10 @@ findUserEvent=(eventId)=>{
                                                   joinEvent={this.newUserEvent}
                                                   searchHandler={this.searchHandler}
                                                   filteredEvents={this.state.filteredEvents}
+                                                  dateHandler={this.dateHandler}
+                                                  resetFilteredEventsArray={this.resetFilteredEventsArray}
+                                                  searchDate={this.state.dateSearchTerm}
+                                                  searchCategory={this.state.eventTypeSearchTerm}
                                                   />
                                                   
                                                 </div>}
@@ -265,7 +283,11 @@ findUserEvent=(eventId)=>{
                                                   learnMore={this.learnMore} 
                                                   joinEvent={this.newUserEvent}
                                                   searchHandler={this.searchHandler}
+                                                  dateHandler={this.dateHandler}
                                                   filteredEvents={this.state.filteredEvents}
+                                                  resetFilteredEventsArray={this.resetFilteredEventsArray}
+                                                  searchDate={this.state.dateSearchTerm}
+                                                  searchCategory={this.state.eventTypeSearchTerm}
                                                   />
                                                   
                                                 </div> }

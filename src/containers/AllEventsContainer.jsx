@@ -4,14 +4,19 @@ import { Segment, Container, Dropdown, Form } from 'semantic-ui-react'
 import Footer from '../components/Footer.jsx'
 import SearchForm from '../components/SearchForm.jsx'
 
+// let dateFilteredEvents = []
 
 
 class AllEventsContainer extends React.Component {
 
 
 
+    state ={
+        date: null
+    }
+
     renderAllEvents=()=>{
-        if (this.props.filteredEvents.length > 0) {
+        if (this.props.filteredEvents.length < this.props.events.length) {
             
             return this.props.filteredEvents.map(event => {
                 return <EventCard 
@@ -39,6 +44,9 @@ class AllEventsContainer extends React.Component {
 
     }
 
+    resetFilteredEventsArray=()=>{
+        this.props.resetFilteredEventsArray()
+    }
 
     render() {
         return (
@@ -54,7 +62,12 @@ class AllEventsContainer extends React.Component {
                 <span style={{}}>
                   <SearchForm 
                   right='true' 
-                  searchHandler={this.props.searchHandler}/>
+                  searchHandler={this.props.searchHandler}
+                  dateHandler={this.props.dateHandler}
+                  resetFilteredEventsArray={this.resetFilteredEventsArray}
+                  searchDate={this.props.searchDate}
+                  searchCategory={this.props.searchCategory}
+                  />
                 </span>
                     <Segment className="ui grid container">
                         {
