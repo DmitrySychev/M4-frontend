@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image, Button, Container, Segment, Popup, Label } from 'semantic-ui-react'
+import { Card, Image, Button, Container, Segment, Popup, Label, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 const timeoutLength = 2500
@@ -65,9 +65,17 @@ if(this.props.deleteUserEvent){
             </Card.Description>
  
             <Container >
-              <Segment vertical={true}>
+
+            <Segment className="segment centered" style={{ margin: 'auto' }} >
+
+                <Grid>
+                  <Grid.Column textAlign="center">
+
               <Button size='small' onClick={()=> this.props.deleteEvent(this.props.event.id)} >Delete Event</Button>
               <Button size='small' as={Link} to={'/events/' + this.props.event.id}   >Learn More</Button>
+              
+                  </Grid.Column>
+                  </Grid>
 
               </Segment>
             </Container>

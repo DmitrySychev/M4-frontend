@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Dropdown, Segment, Button, Label } from 'semantic-ui-react';
+import { Input, Dropdown, Segment, Button, Label, Container } from 'semantic-ui-react';
 
 
 const options = [
@@ -22,7 +22,10 @@ class SearchForm extends React.Component{
     render() {
         console.log("props in search form", this.props)
         return (
-            <Segment attached>
+            <Segment className="ui segment centered" style={{ margin: 'auto' }}>
+                <Label for="start" size='big' >Search for an Event: </Label>
+
+                <Container style={{ paddingLeft: '0em', display: 'inline'}}>
                 <Dropdown 
                  
                 options={options} 
@@ -37,11 +40,14 @@ class SearchForm extends React.Component{
                 onChange={(e, data) => this.props.searchHandler(e, data)}
                 />
     
-                <Label for="start" size='big' >Start Date:</Label>
+ 
                     
                 <Input onChange={(e) => this.props.dateHandler(e)} type="date"  
-                min="2020-09-01" max="2020-09-31" input={this.props.searchDate } ></Input>
+                min="2020-09-01" max="2020-09-31" input={this.props.searchDate} ></Input>
+
+                
                 <Button size='large' onClick={this.props.resetFilteredEventsArray}>Reset Search</Button>
+                </Container>
 
             </Segment>
 

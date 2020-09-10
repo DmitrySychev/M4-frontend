@@ -71,7 +71,7 @@ class AllEventsContainer extends React.Component {
                         searchDate={this.props.searchDate}
                         searchCategory={this.props.searchCategory}
                         />
-                        <Segment className="ui grid container">
+                        <Segment className="ui grid container segment centered" style={{ margin: 'auto' }}>
                         {
                         this.renderAllEvents()
                         } 

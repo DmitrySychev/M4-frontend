@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image, Button, Container, Segment, Popup, Label } from 'semantic-ui-react'
+import { Card, Image, Button, Container, Segment, Popup, Label, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 const timeoutLength = 2500
@@ -38,11 +38,11 @@ callDeleteUserEvent=(eventId)=>{
         if (this.props.joinedEvents !== undefined) {
           if (this.findJoinedEventsId()) {
             return (
-            <Button size="small" onClick={()=> this.props.deleteUserEvent(this.props.event.id)}>No longer attending</Button>
+            <Button stacked size="small" onClick={()=> this.props.deleteUserEvent(this.props.event.id)}>No longer attending</Button>
             )
           }
           return (
-            <Button size="small" onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</Button>
+            <Button stacked size="small" onClick={()=> this.props.joinEvent(this.props.event.id)}>Join Event</Button>
           )
         }
 
@@ -50,7 +50,7 @@ callDeleteUserEvent=(eventId)=>{
 
       return (
         <>
-        <Button size="small" as={Link} to="/login">Join Event</Button>
+        <Button stacked ize="small" as={Link} to="/login">Join Event</Button>
         </>
       )
     }
@@ -84,7 +84,7 @@ callDeleteUserEvent=(eventId)=>{
       <>
        <Popup
         trigger={
-        <Card className="four wide column " style={{ margin: '1em' }}  id={this.props.event.id} >
+        <Card className="four wide column" style={{ margin: '1em' }}  id={this.props.event.id} >
           <Image src={
             this.props.event.thumbnail ?
             this.props.event.thumbnail
@@ -100,13 +100,18 @@ callDeleteUserEvent=(eventId)=>{
               {this.props.event.description}
             </Card.Description>
  
-            <Container >
-              <Segment vertical={true} >
+            
+              <Segment attached={true} className="segment centered" style={{ margin: 'auto' }} >
+                <Grid>
+                  <Grid.Column textAlign="center">
+
               {this.userStatus()}
-              <Button size='small' as={Link} to={'/events/' + this.props.event.id} >Learn More</Button>
+              <Button size='small' as={Link} to={'/events/' + this.props.event.id} style={{ marginTop: '1em' }} >Learn More</Button>
+                  </Grid.Column>
+                  </Grid>
 
               </Segment>
-            </Container>
+            
           </Card.Content>
         </Card>
       }

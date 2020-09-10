@@ -73,7 +73,7 @@ class RecommendationsContainer extends React.Component {
                     <Segment>
 
                     <h1>Recommended events</h1>  
-                    <Segment className="ui grid container">
+                    <Segment className="ui grid container segment centered" style={{ margin: 'auto' }}>
                     {this.state.topThreeEvents && this.state.topThreeEvents.top_three_events.length !== 0 ?
                     this.renderRecommendations() 
                     :
