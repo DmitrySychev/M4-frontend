@@ -28,7 +28,7 @@ class EventShowPage extends React.Component{
   mapAttendees=()=>{
     if (this.state.attendees && this.state.attendees.length > 0) {
      return (
-        <p>Here's everyone that's attending this event: {this.state.attendees.map(attendee => <p> {attendee.username}</p>)}</p> 
+        <p>Here's everyone that's attending this event: {this.state.attendees.map(attendee => <h4 id="attendees"> • {attendee.username} </h4>)}</p> 
         )     
     } else{
       return  <p>There's no one attending this event yet besides the host.</p>
@@ -98,7 +98,7 @@ class EventShowPage extends React.Component{
             </Segment>
 
             <Segment size='large'>
-                <p>Event host: {this.state.eventCreator}.</p>
+                <h4> Event host: {this.state.eventCreator}</h4>
                 {this.mapAttendees()}
             </Segment>
 

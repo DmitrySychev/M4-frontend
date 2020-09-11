@@ -6,3 +6,8 @@ a.ui.card {
 hr {
     border-top: 3px dashed lightgrey;
   }
+
+#attendees {
+    margin-bottom: 0;
+    margin-top: 0;
+}
