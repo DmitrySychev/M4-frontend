@@ -79,6 +79,7 @@ callDeleteUserEvent=(eventId)=>{
 
 
   render() {
+    console.log("props in event card", this.props)
     return (
      
       <>

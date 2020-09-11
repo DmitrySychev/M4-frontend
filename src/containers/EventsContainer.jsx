@@ -45,11 +45,12 @@ class EventsContainer extends React.Component {
                         deleteUserEvent={this.props.deleteUserEvent} />
         })
         )
-    }
+    }else {return <p>You have not created any events yet.</p>}
 }
 
 
     render() { 
+        console.log("props in events container", this.props)
         return (
                 <>
 
@@ -78,7 +79,9 @@ class EventsContainer extends React.Component {
                     events={this.props.events} 
                     joinedEvents={this.props.joinedEvents} 
                     joinEvent={this.props.joinEvent}
-                    createdEvents={this.props.createdEvents}/>
+                    createdEvents={this.props.createdEvents}
+                    deleteUserEvent={this.props.deleteUserEvent}
+                    />
            
 
             </Container>
