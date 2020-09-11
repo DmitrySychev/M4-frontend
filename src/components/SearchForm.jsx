@@ -46,7 +46,7 @@ class SearchForm extends React.Component{
                 min="2020-09-01" max="2020-09-31" input={this.props.searchDate} ></Input>
 
                 
-                <Button size='large' onClick={this.props.resetFilteredEventsArray}>Reset Search</Button>
+                <Button size='large' onClick={this.props.resetFilteredEventsArray}>Clear Search</Button>
                 </Container>
 
             </Segment>
