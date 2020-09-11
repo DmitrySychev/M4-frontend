@@ -1,6 +1,6 @@
 import React from 'react';
 import EventCard from '../components/EventCard'
-import { Segment } from 'semantic-ui-react'
+import { Container, Segment, Divider } from 'semantic-ui-react'
 
 class RecommendationsContainer extends React.Component {
 
@@ -15,16 +15,16 @@ class RecommendationsContainer extends React.Component {
 
     getRecommendations=()=>{
         const token = localStorage.getItem("token")
-        fetch("http://localhost:3000/api/v1/me/recommendations", {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}`},
-          })
-        .then(resp => resp.json())
-        .then(resp => {
-            if(resp.top_three_events){
-                this.setState({topThreeEvents: resp}, ()=> this.generateRecommendations())
-            }else {console.log("bad response")}
-        })
+            fetch("http://localhost:3000/api/v1/me/recommendations", {
+                method: "GET",
+                headers: { Authorization: `Bearer ${token}`},
+              })
+            .then(resp => resp.json())
+            .then(resp => {
+                if(resp.top_three_events){
+                    this.setState({topThreeEvents: resp}, ()=> this.generateRecommendations())
+                }else {console.log("bad response")}
+            })
     }
 
 
@@ -32,16 +32,20 @@ class RecommendationsContainer extends React.Component {
         if(this.state.topThreeEvents){
             const recommendedEvents = []
             const topThreeEvents = this.state.topThreeEvents.top_three_events
-    
-    
+            
+            
             topThreeEvents.forEach((eventCategory)=>{
                 const events = this.props.events.filter(event => event.category === eventCategory)
                 recommendedEvents.push(events)
+                console.log("this.props.events", this.props.events)
             })
-    
+
             this.setState({recommendedEvents: recommendedEvents.flat()})
         }
     }
+
+
+
     
 
     renderRecommendations=()=>{
@@ -70,16 +74,17 @@ class RecommendationsContainer extends React.Component {
         return (
             <div>
 
-                    <Segment>
-
-                    <h1>Recommended events</h1>  
-                    <Segment className="ui grid container segment centered" style={{ margin: 'auto' }}>
+                    <Container>
+                    <hr></hr>
+                    <center><h1>Recommended Events</h1></center>
+                    <Container className="ui grid container centered" style={{ margin: 'auto' }}>
                     {this.state.topThreeEvents && this.state.topThreeEvents.top_three_events.length !== 0 ?
                     this.renderRecommendations() 
                     :
                     <p>To get recommendations, please RSVP yes to an event!</p>}
-                    </Segment>    
-                    </Segment>
+                    </Container> 
+                      
+                    </Container>
             
             </div>
         )

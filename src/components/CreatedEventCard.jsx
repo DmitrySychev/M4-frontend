@@ -66,18 +66,18 @@ if(this.props.deleteUserEvent){
  
             <Container >
 
-            <Segment className="segment centered" style={{ margin: 'auto' }} >
+            <Container className="centered" style={{ margin: 'auto' }} >
 
                 <Grid>
                   <Grid.Column textAlign="center">
 
               <Button size='small' onClick={()=> this.props.deleteEvent(this.props.event.id)} >Delete Event</Button>
-              <Button size='small' as={Link} to={'/events/' + this.props.event.id}   >Learn More</Button>
+              <Button style={{ marginTop: "1em"}} size='small' as={Link} to={'/events/' + this.props.event.id}   >Learn More</Button>
               
                   </Grid.Column>
                   </Grid>
 
-              </Segment>
+              </Container>
             </Container>
 
           </Card.Content>

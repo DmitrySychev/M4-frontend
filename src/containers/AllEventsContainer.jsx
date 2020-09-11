@@ -55,14 +55,12 @@ class AllEventsContainer extends React.Component {
             
             <Container inverted='true' style={{ marginTop: '7em' }}>
            
-            <Segment className="ui grid container" attached="bottom" > 
+                <center><h1>All Events </h1></center>
+            <Container className="ui grid container" attached="bottom" style={{ marginTop: '2em' }} > 
                
-               <span>
-                <h1>All Events </h1>
-               </span>
               
            
-                    <Segment className="ui grid container">
+                    <Container className="ui grid container">
                         <SearchForm 
                         right='true' 
                         searchHandler={this.props.searchHandler}
@@ -71,14 +69,14 @@ class AllEventsContainer extends React.Component {
                         searchDate={this.props.searchDate}
                         searchCategory={this.props.searchCategory}
                         />
-                        <Segment className="ui grid container segment centered" style={{ margin: 'auto' }}>
+                        <Container className="ui grid container centered" style={{ margin: 'auto' }}>
                         {
                         this.renderAllEvents()
                         } 
 
-                        </Segment>
-                    </Segment>      
-            </Segment>
+                        </Container>
+                    </Container>      
+            </Container>
        
 
             </Container>

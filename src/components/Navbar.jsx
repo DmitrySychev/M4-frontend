@@ -28,7 +28,7 @@ render() {
 
   <Menu fixed='top' inverted >
   <Container>
-    <Dropdown item simple text='Pandemic Events' as={Link} to='/' left='true' >
+    <Dropdown item simple text='Quarantine Social Calendar' as={Link} to='/' left='true' >
       <Dropdown.Menu>
 
         {this.props.user === undefined || this.props.user === null ? 

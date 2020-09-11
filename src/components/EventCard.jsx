@@ -50,7 +50,7 @@ callDeleteUserEvent=(eventId)=>{
 
       return (
         <>
-        <Button stacked ize="small" as={Link} to="/login">Join Event</Button>
+        <Button stacked size="small" as={Link} to="/login">Join Event</Button>
         </>
       )
     }
@@ -79,7 +79,6 @@ callDeleteUserEvent=(eventId)=>{
 
 
   render() {
-    console.log("props in event card", this.props)
     return (
      
       <>
@@ -102,7 +101,7 @@ callDeleteUserEvent=(eventId)=>{
             </Card.Description>
  
             
-              <Segment attached={true} className="segment centered" style={{ margin: 'auto' }} >
+              <Container attached={true} className="centered" style={{ margin: 'auto' }} >
                 <Grid>
                   <Grid.Column textAlign="center">
 
@@ -111,7 +110,7 @@ callDeleteUserEvent=(eventId)=>{
                   </Grid.Column>
                   </Grid>
 
-              </Segment>
+              </Container>
             
           </Card.Content>
         </Card>

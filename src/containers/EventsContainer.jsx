@@ -50,27 +50,27 @@ class EventsContainer extends React.Component {
 
 
     render() { 
-        console.log("props in events container", this.props)
         return (
                 <>
 
             <Container inverted='true' style={{ marginTop: '7em' }}>
 
-                <Segment>
-                <h1>Events I'm Attending</h1>  
-                <Segment className="ui grid container segment centered" style={{ margin: 'auto' }}>
+                <Container>
+                <center><h1>Events I'm Attending</h1></center>  
+                <Container className="ui grid container centered" style={{ margin: 'auto' }}>
                     {this.renderJoinedEvents()}
-                    </Segment>    
-                </Segment>
+                    </Container>    
+                </Container>
           
                 
             
-                <Segment>
-                <h1>Events I'm Hosting</h1>
-                <Segment className="ui grid container segment centered" style={{ margin: 'auto' }}>
+                <Container>
+                <hr></hr>
+                <center><h1 className="centered">Events I'm Hosting</h1></center>
+                <Container className="ui grid container centered" style={{ margin: 'auto' }}>
                         { this.renderCreatedEvents() }            
-                    </Segment>
-                </Segment>
+                    </Container>
+                </Container>
                
 
                 
